@@ -4,6 +4,7 @@ import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
+import org.lwjgl.Sys;
 import org.newdawn.slick.opengl.Texture;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -27,7 +28,11 @@ public class Player extends Entity implements Shoot
     private void debugPos()
     {
         System.out.println("X: " + pos.x + " Y: " + pos.y);
-        System.out.println("Delta: " + Game.getDeltaTime() / 1000);
+        System.out.println("Delta: " + Game.getDeltaTime());
+        System.out.println("Time: " + Game.time);
+        System.out.println("getTime(): " + Game.getTime());
+        System.out.println("Sys.getTime(): " + Sys.getTime());
+        System.out.println("Sys.getTimerResolution: " + Sys.getTimerResolution());
     }
 
     // Move method so that player can change positions in 2.5D.
@@ -95,6 +100,5 @@ public class Player extends Entity implements Shoot
         pos.x += velocity.x;
         pos.y += velocity.y;
 
-        draw();
     }
 }

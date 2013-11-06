@@ -16,6 +16,7 @@ public class GameScreen extends Screen
     @Override
     public void render()
     {
+        player.draw();
     }
 
     @Override
