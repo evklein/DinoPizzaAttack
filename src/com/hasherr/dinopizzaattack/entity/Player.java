@@ -28,11 +28,7 @@ public class Player extends Entity implements Shoot
     private void debugPos()
     {
         System.out.println("X: " + pos.x + " Y: " + pos.y);
-        System.out.println("Delta: " + Game.getDeltaTime());
-        System.out.println("Time: " + Game.time);
-        System.out.println("getTime(): " + Game.getTime());
-        System.out.println("Sys.getTime(): " + Sys.getTime());
-        System.out.println("Sys.getTimerResolution: " + Sys.getTimerResolution());
+        System.out.println("Delta: " + Game.delta);
     }
 
     // Move method so that player can change positions in 2.5D.
@@ -41,22 +37,22 @@ public class Player extends Entity implements Shoot
     {
         if (dir == Direction.NORTH)
         {
-            velocity.y += 2f;
+            velocity.y += 60f * Game.delta / 1000;
             debugPos();
         }
-        else if (dir == Direction.SOUTH)
+        if (dir == Direction.SOUTH)
         {
-            velocity.y += -2f;
+            velocity.y += -60f * Game.delta / 1000;
             debugPos();
         }
-        else if (dir == Direction.EAST)
+        if (dir == Direction.EAST)
         {
-            velocity.x += 2f;
+            velocity.x += 60f* Game.delta / 1000;
             debugPos();
         }
-        else if (dir == Direction.WEST)
+        if (dir == Direction.WEST)
         {
-            velocity.x += -2f;
+            velocity.x += -60f* Game.delta / 1000;
             debugPos();
         }
     }
@@ -94,8 +90,8 @@ public class Player extends Entity implements Shoot
 
     public void update()
     {
-        velocity.y *= 0.95f;
-        velocity.x *= 0.95f;
+        velocity.y *= 0.99f;
+        velocity.x *= 0.99f;
 
         pos.x += velocity.x;
         pos.y += velocity.y;

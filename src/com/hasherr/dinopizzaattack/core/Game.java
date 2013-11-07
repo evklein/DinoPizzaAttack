@@ -18,7 +18,7 @@ public class Game
     ScreenManager screenManager;
     InputManager inputManager;
 
-    public static float time, fps, lastFps, lastFrame, delta;
+    public static double time, fps, lastFps, lastFrame, delta;
 
     public static void main(String[] args) // Main method for running.
     {
@@ -80,12 +80,12 @@ public class Game
     /* Timer elements and Delta. */
 
     // Return the system time in milliseconds.
-    public static float getTime()
+    public static double getTime()
     {
-        return Sys.getTime();
+        return (Sys.getTime() * 1000.0f) / Sys.getTimerResolution();
     }
 
-    public static float getDeltaTime()
+    public static double getDeltaTime()
     {
         return delta;
     }

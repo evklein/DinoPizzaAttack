@@ -5,7 +5,7 @@
     <ignored path="Skelebomber.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Main.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383253497568" ignored="false" />
-    <file path="/Game.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383780208297" ignored="false" />
+    <file path="/Game.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383781331604" ignored="false" />
     <file path="/Vector.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383254308236" ignored="false" />
     <file path="/Vector2.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383435892703" ignored="false" />
     <file path="/State.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383264648623" ignored="false" />
@@ -14,7 +14,7 @@
     <file path="/TitleScreen.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383267046579" ignored="false" />
     <file path="/Direction.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383267106002" ignored="false" />
     <file path="/ScreenManager.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383461996990" ignored="false" />
-    <file path="/Player.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383780332472" ignored="false" />
+    <file path="/Player.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383782845922" ignored="false" />
     <file path="/Laser.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383435618799" ignored="false" />
     <file path="/InputManager.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383697549498" ignored="false" />
     <file path="/Shoot.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383408870300" ignored="false" />
@@ -107,7 +107,7 @@
       <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="109" selection-start="2669" selection-end="2669" vertical-scroll-proportion="0.8226087">
+            <state line="58" column="12" selection-start="1635" selection-end="1720" vertical-scroll-proportion="0.4973913">
               <folding />
             </state>
           </provider>
@@ -125,7 +125,7 @@
       <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="32" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+            <state line="33" column="51" selection-start="892" selection-end="892" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -212,8 +212,8 @@
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/ScreenManager.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/InputManager.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/GameScreen.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java" />
       </list>
     </option>
   </component>
@@ -670,14 +670,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="32" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+        <state line="33" column="51" selection-start="892" selection-end="892" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="109" selection-start="2669" selection-end="2669" vertical-scroll-proportion="0.8226087">
+        <state line="58" column="12" selection-start="1635" selection-end="1720" vertical-scroll-proportion="0.4973913">
           <folding />
         </state>
       </provider>
