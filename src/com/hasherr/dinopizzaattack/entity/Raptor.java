@@ -12,7 +12,6 @@ import org.newdawn.slick.opengl.Texture;
 public class Raptor extends Entity
 {
 
-    @Override
     public void move(Direction dir)
     {
 
@@ -26,6 +25,12 @@ public class Raptor extends Entity
 
     @Override
     public void draw()
+    {
+
+    }
+
+    @Override
+    public void update()
     {
 
     }

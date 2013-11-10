@@ -1,5 +1,6 @@
 package com.hasherr.dinopizzaattack.screens;
 
+import com.hasherr.dinopizzaattack.entity.Laser;
 import com.hasherr.dinopizzaattack.entity.Player;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -16,12 +17,20 @@ public class GameScreen extends Screen
     @Override
     public void render()
     {
+        for (Laser laser : Laser.allLasers)
+        {
+            laser.draw();
+        }
         player.draw();
     }
 
     @Override
     public void update()
     {
+        for (Laser laser : Laser.allLasers)
+        {
+            laser.update();
+        }
         player.update();
     }
 

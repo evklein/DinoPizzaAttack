@@ -19,10 +19,13 @@ public class Game
     InputManager inputManager;
 
     public static double time, fps, lastFps, lastFrame, delta;
+    public static int width = 1000,
+                      height = 700;
 
     public static void main(String[] args) // Main method for running.
     {
-        new Game().initGL(1000, 700); // Start the game.
+
+        new Game().initGL(width, height); // Start the game.
     }
 
     private void initGL(int width, int height) // Displaying screen using OpenGL.
@@ -40,11 +43,13 @@ public class Game
         lastFps = getTime();
 
         // Intitial GL elements.
-        glMatrixMode(GL_PROJECTION);                // *
-        glLoadIdentity();                           // *
-        glOrtho(0, width, 0, height, 1, -1);        // *
-        glMatrixMode(GL_MODELVIEW);                 // *
-        glEnable(GL_TEXTURE_2D);                    // *
+        glMatrixMode(GL_PROJECTION);                        // *
+        glLoadIdentity();                                   // *
+        glOrtho(0, width, 0, height, 1, -1);                // *
+        glMatrixMode(GL_MODELVIEW);                         // *
+        glEnable(GL_TEXTURE_2D);                            // *
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // *
+        glEnable( GL_BLEND );                               // *
 
         screenManager = new ScreenManager();
         inputManager = new InputManager(screenManager);
@@ -56,6 +61,8 @@ public class Game
         // Infinite game logic loop.
         while (!Display.isCloseRequested())
         {
+
+            displayDelta();
             time = getTime();
             delta = time - lastFrame;
             lastFrame = time;
@@ -64,10 +71,10 @@ public class Game
             Display.update();
             glClear(GL_COLOR_BUFFER_BIT);
 
-            displayDelta();
             Display.sync(60); // Cap the FPS to 60 frames.
+            displayDelta();
 
-            inputManager.handleInput(screenManager.getPlayer()); // Handle all player input for the game.
+            inputManager.pollInput(screenManager.getPlayer()); // Handle all player input for the game.
 
             screenManager.update();
             screenManager.render();
@@ -82,7 +89,7 @@ public class Game
     // Return the system time in milliseconds.
     public static double getTime()
     {
-        return (Sys.getTime() * 1000.0f) / Sys.getTimerResolution();
+        return (double) Sys.getTime() / Sys.getTimerResolution();
     }
 
     public static double getDeltaTime()
@@ -92,12 +99,11 @@ public class Game
 
     private void displayDelta()
     {
-        if (getTime() - lastFps > 1000)
-        {
+
+
             Display.setTitle("Dino Pizza Attack! FPS: " + fps);
             fps = 0;
             lastFps += 1000;
-        }
         fps++;
     }
 

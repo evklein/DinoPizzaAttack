@@ -13,7 +13,7 @@ public abstract class Entity
 {
     Vector2 pos;
 
-    public abstract void move(Direction dir);
     public abstract Texture getSprite();
     public abstract void draw();
+    public abstract void update();
 }

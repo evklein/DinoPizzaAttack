@@ -1,6 +1,7 @@
 package com.hasherr.dinopizzaattack.core;
 
 import com.hasherr.dinopizzaattack.entity.Player;
+import com.hasherr.dinopizzaattack.math.Vector2;
 import com.hasherr.dinopizzaattack.screens.ScreenManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -20,8 +21,16 @@ public class InputManager
     }
 
     // Handle all user input.
-    public void handleInput(Player player)
+    public void pollInput(Player player)
     {
+        Vector2 mousePosition = new Vector2(0, 0);
+
+        while (Mouse.next())
+        {
+            mousePosition.setX(Mouse.getX());
+            mousePosition.setY(Mouse.getY());
+        }
+
         if (Keyboard.isKeyDown(Keyboard.KEY_W))
         {
             player.move(Direction.NORTH);
@@ -44,7 +53,7 @@ public class InputManager
 
         if (Mouse.isButtonDown(0))
         {
-            System.out.println("X: " + Mouse.getX() + " Y: " + Mouse.getY());
+            player.shoot(mousePosition);
         }
     }
 }
