@@ -20,12 +20,14 @@ public class InputManager
         this.screenManager = screenManager;
     }
 
+    Vector2 mousePosition = new Vector2(0, 0);
+
+
     // Handle all user input.
     public void pollInput(Player player)
     {
-        Vector2 mousePosition = new Vector2(0, 0);
 
-        while (Mouse.next())
+        if (Mouse.next())
         {
             mousePosition.setX(Mouse.getX());
             mousePosition.setY(Mouse.getY());

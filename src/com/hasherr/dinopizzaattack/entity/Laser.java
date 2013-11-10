@@ -28,8 +28,8 @@ public class Laser extends Entity
 
     public Laser(Player player, Vector2 vec)
     {
-        pos = new Vector2(player.pos.x + 40, player.pos.y + 40);
-        normalizedDir = new Vector2(vec.x - (player.pos.x + 40), vec.y - (player.pos.x + 40)).getNormalizedVector();
+        pos = new Vector2(player.pos.x, player.pos.y);
+        normalizedDir = new Vector2(vec.x - (player.pos.x), vec.y - (player.pos.x)).getNormalizedVector();
 
         Laser.allLasers.add(this);
     }
