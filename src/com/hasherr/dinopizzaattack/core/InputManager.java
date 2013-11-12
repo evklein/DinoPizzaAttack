@@ -21,7 +21,7 @@ public class InputManager
     }
 
     Vector2 mousePosition = new Vector2(0, 0);
-
+    boolean isMouseButtonDown = false;
 
     // Handle all user input.
     public void pollInput(Player player)
@@ -55,7 +55,16 @@ public class InputManager
 
         if (Mouse.isButtonDown(0))
         {
-            player.shoot(mousePosition);
+            if (!isMouseButtonDown)
+            {
+                isMouseButtonDown = true;
+                player.shoot(mousePosition);
+            }
         }
+        else
+        {
+            isMouseButtonDown = false;
+        }
+
     }
 }

@@ -55,22 +55,18 @@ public class Player extends Entity implements Shoot
         if (dir == Direction.NORTH)
         {
             velocity.y += 60 * Game.delta;
-            handleCollision();
         }
         if (dir == Direction.SOUTH)
         {
             velocity.y += -60f * Game.delta;
-            handleCollision();
         }
         if (dir == Direction.EAST)
         {
             velocity.x += 60f * Game.delta;
-            handleCollision();
         }
         if (dir == Direction.WEST)
         {
             velocity.x += -60f * Game.delta;
-            handleCollision();
         }
     }
 
@@ -93,17 +89,17 @@ public class Player extends Entity implements Shoot
 
         playerSprite.bind();
         glBegin(GL_QUADS);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex2d(pos.x, pos.y);
+            glTexCoord2f(0.0f, 1.0f);
+            glVertex2d(pos.x, pos.y);
 
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex2d(pos.x + playerSprite.getImageWidth(), pos.y);
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex2d(pos.x + playerSprite.getImageWidth(), pos.y);
 
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex2d(pos.x + playerSprite.getImageWidth(), pos.y + playerSprite.getImageHeight());
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex2d(pos.x + playerSprite.getImageWidth(), pos.y + playerSprite.getImageHeight());
 
-        glTexCoord2f(0f, 0.0f);
-        glVertex2d(pos.x, pos.y + playerSprite.getImageHeight());
+            glTexCoord2f(0f, 0.0f);
+            glVertex2d(pos.x, pos.y + playerSprite.getImageHeight());
         glEnd();
     }
 

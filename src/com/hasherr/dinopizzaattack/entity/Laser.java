@@ -21,6 +21,8 @@ public class Laser extends Entity
 
     // Static ArrayList for lasers so that they can be continuously drawn & updated.
     public static ArrayList<Laser> allLasers = new ArrayList<Laser>();
+    public static ArrayList<Laser> deadLasers = new ArrayList<Laser>();
+
 
     // Vectors.
     Vector2 velocityVector = new Vector2(12, 12);
@@ -28,8 +30,8 @@ public class Laser extends Entity
 
     public Laser(Player player, Vector2 vec)
     {
-        pos = new Vector2(player.pos.x, player.pos.y);
-        normalizedDir = new Vector2(vec.x - (player.pos.x), vec.y - (player.pos.x)).getNormalizedVector();
+        pos = new Vector2(player.pos.x + 40, player.pos.y + 40);
+        normalizedDir = new Vector2(vec.x - (player.pos.x), vec.y - (player.pos.y)).getNormalizedVector();
 
         Laser.allLasers.add(this);
     }
@@ -63,5 +65,10 @@ public class Laser extends Entity
     {
         pos.x += normalizedDir.x *  (Game.getDeltaTime() * 1000);
         pos.y += normalizedDir.y * (Game.getDeltaTime() * 1000);
+
+        if (pos.x > Game.width || pos.x < 0 || pos.y > Game.height || pos.y < 0)
+        {
+            Laser.deadLasers.add(this);
+        }
     }
 }

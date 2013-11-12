@@ -1,5 +1,6 @@
 package com.hasherr.dinopizzaattack.core;
 
+import com.hasherr.dinopizzaattack.entity.Laser;
 import com.hasherr.dinopizzaattack.entity.Player;
 import com.hasherr.dinopizzaattack.screens.ScreenManager;
 import org.lwjgl.LWJGLException;
@@ -67,7 +68,6 @@ public class Game
             delta = time - lastFrame;
             lastFrame = time;
 
-
             Display.update();
             glClear(GL_COLOR_BUFFER_BIT);
 
@@ -99,8 +99,6 @@ public class Game
 
     private void displayDelta()
     {
-
-
             Display.setTitle("Dino Pizza Attack! FPS: " + fps);
             fps = 0;
             lastFps += 1000;

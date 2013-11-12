@@ -11,7 +11,7 @@ import org.newdawn.slick.opengl.Texture;
  */
 public abstract class Entity
 {
-    Vector2 pos;
+    public Vector2 pos;
 
     public abstract Texture getSprite();
     public abstract void draw();
