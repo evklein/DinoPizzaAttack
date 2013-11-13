@@ -17,7 +17,7 @@ public class Game
     ScreenManager screenManager;
     InputManager inputManager;
 
-    private static double time, fps, lastFps, lastFrame, delta;
+    private static double time, lastTime, frames, lastDelta, delta;
     public static final int WIDTH = 1000, HEIGHT = 700;
 
     public static void main(String[] args) // Main method for running.
@@ -28,7 +28,6 @@ public class Game
 
     private void initGL(int width, int height) // Displaying screen using OpenGL.
     {
-
         try
         {
             Display.setDisplayMode(new DisplayMode(width, height));
@@ -38,20 +37,19 @@ public class Game
             e.printStackTrace();
             System.exit(0);
         }
-        lastFps = getTime();
+        lastDelta = getTime();
 
-        // Intitial GL elements.
+        // Initial GL elements.
         glMatrixMode(GL_PROJECTION);                        // *
         glLoadIdentity();                                   // *
         glOrtho(0, width, 0, height, 1, -1);                // *
         glMatrixMode(GL_MODELVIEW);                         // *
         glEnable(GL_TEXTURE_2D);                            // *
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // *
-        glEnable( GL_BLEND );                               // *
+        glEnable(GL_BLEND);                                 // *
 
         screenManager = new ScreenManager();
         inputManager = new InputManager();
-
 
 
         // Infinite game logic loop.
@@ -61,9 +59,8 @@ public class Game
             displayFps();
 
             time = getTime();
-            delta = time - lastFrame;
-            lastFrame = time;
-
+            delta = time - lastDelta;
+            lastDelta = time;
 
             Display.update(); // Update the screen at a constant rate.
             glClear(GL_COLOR_BUFFER_BIT); // Clear the screen for efficient rendering of sprites and textures.
@@ -82,10 +79,10 @@ public class Game
 
     /* Timer methods. */
 
-    // Return the system time in milliseconds.
+    // Return the system time in seconds.
     public static double getTime()
     {
-        return ((double) Sys.getTime()) / Sys.getTimerResolution();
+        return (double) Sys.getTime() / Sys.getTimerResolution();
     }
 
 
@@ -96,18 +93,13 @@ public class Game
 
     private void displayFps()
     {
-        if (fps > 1000)
+        if (getTime() - lastTime >= 1)
         {
-            Display.setTitle("Dino Pizza Attack! FPS: " + fps);
-            lastFps += 1000;
-            fps = 0;
-            fps++;
+            Display.setTitle("Dino Pizza Attack! FPS: " + (int) frames);
+            lastTime = getTime();
+            frames = 0;
         }
-    }
-
-    public void incrementFps()
-    {
-        fps++;
+        frames++;
     }
 
 }

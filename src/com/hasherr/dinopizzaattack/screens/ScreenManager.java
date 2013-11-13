@@ -1,5 +1,6 @@
 package com.hasherr.dinopizzaattack.screens;
 
+import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.Player;
 
 import java.util.ArrayList;
