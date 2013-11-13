@@ -25,15 +25,15 @@ public class Laser extends Entity
 
 
     // Vectors.
-    Vector2 velocityVector = new Vector2(12, 12);
-    Vector2 normalizedDir;
+    Vector2 velocityVector = new Vector2(12.0); // Velocity variable to determine the speed of the laser.
+    Vector2 normalizedDir; // Direction vector to handle where the laser is going.
 
     public Laser(Player player, Vector2 vec)
     {
-        pos = new Vector2(player.pos.x + 40, player.pos.y + 40);
+        pos = new Vector2(player.pos.x + 40.0, player.pos.y + 40.0); // Set player position.
         normalizedDir = new Vector2(vec.x - (player.pos.x), vec.y - (player.pos.y)).getNormalizedVector();
 
-        Laser.allLasers.add(this);
+        Laser.allLasers.add(this);  // Add this laser to a list of updated and rendered lasers.
     }
 
     @Override
@@ -66,9 +66,5 @@ public class Laser extends Entity
         pos.x += normalizedDir.x *  (Game.getDeltaTime() * 1000);
         pos.y += normalizedDir.y * (Game.getDeltaTime() * 1000);
 
-        if (pos.x > Game.width || pos.x < 0 || pos.y > Game.height || pos.y < 0)
-        {
-            Laser.deadLasers.add(this);
-        }
     }
 }

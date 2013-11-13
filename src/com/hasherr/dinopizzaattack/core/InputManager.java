@@ -13,12 +13,6 @@ import org.lwjgl.input.Mouse;
  */
 public class InputManager
 {
-    ScreenManager screenManager;
-
-    public InputManager(ScreenManager screenManager)
-    {
-        this.screenManager = screenManager;
-    }
 
     Vector2 mousePosition = new Vector2(0, 0);
     boolean isMouseButtonDown = false;
@@ -27,12 +21,13 @@ public class InputManager
     public void pollInput(Player player)
     {
 
-        if (Mouse.next())
+        if (Mouse.next()) // Recalculate the coordinates of the mouse every frame for shooting purposes.
         {
             mousePosition.setX(Mouse.getX());
             mousePosition.setY(Mouse.getY());
         }
 
+        // Movement via keyboard.
         if (Keyboard.isKeyDown(Keyboard.KEY_W))
         {
             player.move(Direction.NORTH);
@@ -53,7 +48,8 @@ public class InputManager
             player.move(Direction.WEST);
         }
 
-        if (Mouse.isButtonDown(0))
+        // Shooting controls, player can only shoot one bullet per click.
+        if (Mouse.isButtonDown(0)) // If left mouse click.
         {
             if (!isMouseButtonDown)
             {

@@ -25,28 +25,8 @@ public class Player extends Entity implements Shoot
     public Player(int x, int y)
     {
         pos = new Vector2(x, y);
-        velocity = new Vector2(0, 0);
+        velocity = new Vector2(0.0);
 
-    }
-
-    private void handleCollision()
-    {
-        if (pos.x >= Game.width - (playerSprite.getImageWidth() + 2))
-        {
-            pos.x = Game.width;
-        }
-        if (pos.x <= 0)
-        {
-            pos.x = 0;
-        }
-        if (pos.y >= Game.height)
-        {
-            pos.y = Game.height;
-        }
-        if (pos.y <= 1)
-        {
-            pos.y = 1;
-        }
     }
 
     // Move method so that player can change positions in 2.5D.
@@ -54,19 +34,19 @@ public class Player extends Entity implements Shoot
     {
         if (dir == Direction.NORTH)
         {
-            velocity.y += 60 * Game.delta;
+            velocity.y += 60 * Game.getDeltaTime();
         }
         if (dir == Direction.SOUTH)
         {
-            velocity.y += -60f * Game.delta;
+            velocity.y += -60f * Game.getDeltaTime();
         }
         if (dir == Direction.EAST)
         {
-            velocity.x += 60f * Game.delta;
+            velocity.x += 60f * Game.getDeltaTime();
         }
         if (dir == Direction.WEST)
         {
-            velocity.x += -60f * Game.delta;
+            velocity.x += -60f * Game.getDeltaTime();
         }
     }
 
@@ -86,7 +66,6 @@ public class Player extends Entity implements Shoot
     @Override
     public void draw() // Draw the player sprite onto the screen.
     {
-
         playerSprite.bind();
         glBegin(GL_QUADS);
             glTexCoord2f(0.0f, 1.0f);
@@ -115,4 +94,5 @@ public class Player extends Entity implements Shoot
         pos.x += velocity.x;
         pos.y += velocity.y;
     }
+
 }

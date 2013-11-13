@@ -11,8 +11,12 @@ import java.util.ArrayList;
  */
 public class ScreenManager
 {
+    /* Treat the screens like a stack, using pop() and push() methods
+       to control the user's experience between multiple screens.
+     */
     ArrayList<Screen> runningScreens = new ArrayList<Screen>();
 
+    // Temporary constructor.
     public ScreenManager()
     {
         runningScreens.add(new GameScreen());
@@ -36,15 +40,16 @@ public class ScreenManager
     // Renders the screen at a continuous rate.
     public void render()
     {
-       getLast().render(); // .get(runningScreens.size() - 1).render();
+       getLast().render();
     }
 
-    // Updates the screen (60 FPS).
+    // Updates the screen every frame.
     public void update()
     {
         getLast().update();
     }
 
+    // Return the player if needed.
     public Player getPlayer()
     {
         Player playerToReturn;
@@ -52,7 +57,8 @@ public class ScreenManager
         if (getLast() instanceof GameScreen)
         {
             playerToReturn = ((GameScreen) getLast()).player;
-        } else
+        }
+        else
         {
             playerToReturn = null;
         }

@@ -22,7 +22,8 @@ public class GameScreen extends Screen
         {
             laser.draw();
 
-            if (laser.pos.x > Game.width || laser.pos.x < 0 || laser.pos.y > Game.height || laser.pos.y < 0)
+            if (laser.pos.x > Game.WIDTH || laser.pos.x < 0 ||
+                laser.pos.y > Game.HEIGHT || laser.pos.y < 0)
             {
                 Laser.deadLasers.add(laser);
             }
@@ -46,7 +47,8 @@ public class GameScreen extends Screen
         {
             laser.update();
 
-            if (laser.pos.x > Game.width || laser.pos.x < 0 || laser.pos.y > Game.height || laser.pos.y < 0)
+            if (laser.pos.x > Game.WIDTH || laser.pos.x < 0 ||
+                laser.pos.y > Game.HEIGHT || laser.pos.y < 0)
             {
                 Laser.deadLasers.add(laser);
             }

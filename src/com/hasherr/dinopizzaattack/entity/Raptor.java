@@ -20,7 +20,7 @@ public class Raptor extends Entity
     @Override
     public Texture getSprite()
     {
-        return null;
+        return null;  // Temporary return value.
     }
 
     @Override

@@ -7,7 +7,8 @@ import com.hasherr.dinopizzaattack.math.Vector2;
  * User: Evan
  * Date: 11/2/13
  */
-public interface Shoot
+public interface Shoot // Behavior which allows entities to fire projectiles.
 {
     public abstract void shoot(Vector2 direction);
+
 }

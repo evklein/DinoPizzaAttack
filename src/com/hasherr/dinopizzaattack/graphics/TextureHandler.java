@@ -13,6 +13,7 @@ import java.io.IOException;
  */
 public class TextureHandler
 {
+    // Used to deliver a texture to entities for quad-rendering.
     public static Texture getTexture(String name, String ext)
     {
         Texture texture = null;
@@ -23,7 +24,7 @@ public class TextureHandler
                             "res/sprites/" + name + "." + ext.toLowerCase()));
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(0); // Crash only if a texture doesn't load.
+            System.exit(0); // Exit the game if the texture doesn't exist/isn't loaded properly.
         }
 
         return texture;

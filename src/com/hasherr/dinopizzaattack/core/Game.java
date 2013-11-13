@@ -1,7 +1,5 @@
 package com.hasherr.dinopizzaattack.core;
 
-import com.hasherr.dinopizzaattack.entity.Laser;
-import com.hasherr.dinopizzaattack.entity.Player;
 import com.hasherr.dinopizzaattack.screens.ScreenManager;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -19,14 +17,13 @@ public class Game
     ScreenManager screenManager;
     InputManager inputManager;
 
-    public static double time, fps, lastFps, lastFrame, delta;
-    public static int width = 1000,
-                      height = 700;
+    private static double time, fps, lastFps, lastFrame, delta;
+    public static final int WIDTH = 1000, HEIGHT = 700;
 
     public static void main(String[] args) // Main method for running.
     {
 
-        new Game().initGL(width, height); // Start the game.
+        new Game().initGL(WIDTH, HEIGHT); // Start the game.
     }
 
     private void initGL(int width, int height) // Displaying screen using OpenGL.
@@ -53,55 +50,63 @@ public class Game
         glEnable( GL_BLEND );                               // *
 
         screenManager = new ScreenManager();
-        inputManager = new InputManager(screenManager);
-
-        // Clear the screen for efficient redering of sprites and textures.
+        inputManager = new InputManager();
 
 
 
         // Infinite game logic loop.
         while (!Display.isCloseRequested())
         {
+            // Operations to do with timing.
+            displayFps();
 
-            displayDelta();
             time = getTime();
             delta = time - lastFrame;
             lastFrame = time;
 
-            Display.update();
-            glClear(GL_COLOR_BUFFER_BIT);
+
+            Display.update(); // Update the screen at a constant rate.
+            glClear(GL_COLOR_BUFFER_BIT); // Clear the screen for efficient rendering of sprites and textures.
 
             Display.sync(60); // Cap the FPS to 60 frames.
-            displayDelta();
 
             inputManager.pollInput(screenManager.getPlayer()); // Handle all player input for the game.
 
+            // Render and update the game.
             screenManager.update();
             screenManager.render();
-
         }
 
-        Display.destroy(); // If the Display is requested, exit the main while loop and destroy the display (Exit).
+        Display.destroy(); // If the user closes the game, dissolve all attributes.
     }
 
-    /* Timer elements and Delta. */
+    /* Timer methods. */
 
     // Return the system time in milliseconds.
     public static double getTime()
     {
-        return (double) Sys.getTime() / Sys.getTimerResolution();
+        return ((double) Sys.getTime()) / Sys.getTimerResolution();
     }
+
 
     public static double getDeltaTime()
     {
         return delta;
     }
 
-    private void displayDelta()
+    private void displayFps()
     {
+        if (fps > 1000)
+        {
             Display.setTitle("Dino Pizza Attack! FPS: " + fps);
-            fps = 0;
             lastFps += 1000;
+            fps = 0;
+            fps++;
+        }
+    }
+
+    public void incrementFps()
+    {
         fps++;
     }
 
