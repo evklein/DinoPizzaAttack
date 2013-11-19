@@ -18,8 +18,9 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Player extends Entity implements Shoot
 {
+    Direction faceDirection;
     Vector2 velocity;
-    Texture playerSprite = TextureHandler.getTexture("stego", "png");
+    Texture playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
 
     // Player constructor.
     public Player(int x, int y)
@@ -29,9 +30,22 @@ public class Player extends Entity implements Shoot
 
     }
 
+    private void setFaceDirection(Direction dir)
+    {
+        if (dir == Direction.NORTH || dir == Direction.SOUTH)
+        {
+            throw new IllegalArgumentException();
+        }
+        else
+        {
+            faceDirection = dir;
+        }
+    }
+
     // Move method so that player can change positions in 2.5D.
     public void move(Direction dir)
     {
+
         if (dir == Direction.NORTH)
         {
             velocity.y += 60 * Game.getDeltaTime();
@@ -42,10 +56,12 @@ public class Player extends Entity implements Shoot
         }
         if (dir == Direction.EAST)
         {
+            setFaceDirection(dir);
             velocity.x += 60f * Game.getDeltaTime();
         }
         if (dir == Direction.WEST)
         {
+            setFaceDirection(dir);
             velocity.x += -60f * Game.getDeltaTime();
         }
     }
@@ -64,21 +80,34 @@ public class Player extends Entity implements Shoot
     }
 
     @Override
-    public void draw() // Draw the player sprite onto the screen.
+    public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
+        float rightOffSet = 0f;
+        float leftOffSet = 0f;
+        float numOfSprites = 8f;
+        if (faceDirection == Direction.EAST)
+        {
+            rightOffSet = 2f;
+            leftOffSet = 1f;
+        }
+        else if (faceDirection == Direction.WEST)
+        {
+            rightOffSet = 6f;
+            leftOffSet = 5f;
+        }
         playerSprite.bind();
         glBegin(GL_QUADS);
-            glTexCoord2f(0.0f, 1.0f);
+            glTexCoord2f(leftOffSet / numOfSprites, 1f);
             glVertex2d(pos.x, pos.y);
 
-            glTexCoord2f(1.0f, 1.0f);
-            glVertex2d(pos.x + playerSprite.getImageWidth(), pos.y);
+            glTexCoord2f(rightOffSet / numOfSprites, 1f);
+            glVertex2d(pos.x + (playerSprite.getImageWidth() / 8), pos.y);
 
-            glTexCoord2f(1.0f, 0.0f);
-            glVertex2d(pos.x + playerSprite.getImageWidth(), pos.y + playerSprite.getImageHeight());
+            glTexCoord2f(rightOffSet / numOfSprites, 0f);
+            glVertex2d(pos.x + (playerSprite.getImageWidth() / 8), pos.y + (playerSprite.getImageHeight()));
 
-            glTexCoord2f(0f, 0.0f);
-            glVertex2d(pos.x, pos.y + playerSprite.getImageHeight());
+            glTexCoord2f(leftOffSet / numOfSprites, 0f);
+            glVertex2d(pos.x, pos.y + (playerSprite.getImageHeight()));
         glEnd();
     }
 
