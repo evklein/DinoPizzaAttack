@@ -1,7 +1,15 @@
 package com.hasherr.dinopizzaattack.entity;
 
 import com.hasherr.dinopizzaattack.core.Direction;
+import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.graphics.TextureHandler;
+import com.hasherr.dinopizzaattack.math.Vector2;
 import org.newdawn.slick.opengl.Texture;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,27 +19,54 @@ import org.newdawn.slick.opengl.Texture;
 
 public class Raptor extends Entity
 {
+    Texture raptorSprite = TextureHandler.getTexture("raptor", "png");
+    Vector2 raptorSpeed = new Vector2(56.0);
+    Player player;
 
-    public void move(Direction dir)
+    public static ArrayList<Raptor> allRaptors = new ArrayList<Raptor>();
+    public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
+
+
+    public Raptor(Player player)
     {
+        this.player = player;
+        Raptor.allRaptors.add(this);
 
+        pos.x = (Math.random() * Game.WIDTH);
+        pos.y = (Math.random() * Game.HEIGHT);
+    }
+
+    public void move()
+    {
+        pos.addVector(player.pos.getNormalizedVector());
     }
 
     @Override
     public Texture getSprite()
     {
-        return null;  // Temporary return value.
+        return raptorSprite;
     }
 
     @Override
     public void draw()
     {
+        glBegin(GL_QUADS);
+            glTexCoord2d(0.0, 1.0);
+            glVertex2d(pos.x, pos.y);
 
+            glTexCoord2d(1.0, 1.0);
+            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y);
+
+            glTexCoord2d(1.0, 0.0);
+            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y + raptorSprite.getImageHeight());
+
+            glTexCoord2d(0.0, 0.0);
+            glTexCoord2d(pos.x, pos.y + raptorSprite.getImageHeight());
     }
 
     @Override
     public void update()
     {
-
+        move();
     }
 }

@@ -5,24 +5,25 @@
     <ignored path="Skelebomber.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Main.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383253497568" ignored="false" />
-    <file path="/Game.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384817605928" ignored="false" />
+    <file path="/Game.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1387900678427" ignored="false" />
     <file path="/Vector.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383254308236" ignored="false" />
     <file path="/Vector2.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384301824158" ignored="false" />
     <file path="/State.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383264648623" ignored="false" />
     <file path="/Screen.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383265068582" ignored="false" />
-    <file path="/GameScreen.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384221533126" ignored="false" />
+    <file path="/GameScreen.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1385335125297" ignored="false" />
     <file path="/TitleScreen.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383267046579" ignored="false" />
     <file path="/Direction.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383267106002" ignored="false" />
     <file path="/ScreenManager.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384309569980" ignored="false" />
-    <file path="/Player.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384817400064" ignored="false" />
+    <file path="/Player.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1387942181381" ignored="false" />
     <file path="/Laser.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384298911898" ignored="false" />
-    <file path="/InputManager.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384298432901" ignored="false" />
+    <file path="/InputManager.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384901600344" ignored="false" />
     <file path="/Shoot.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384299052690" ignored="false" />
     <file path="/Entity.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384298738471" ignored="false" />
     <file path="/fragment.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384219066220" ignored="false" />
-    <file path="/Raptor.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384299030177" ignored="false" />
+    <file path="/Raptor.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1385322130666" ignored="false" />
     <file path="/TextureLoader.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1383431065438" ignored="false" />
     <file path="/TextureHandler.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384299112078" ignored="false" />
+    <file path="/EntityHandler.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384993961465" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,25 +93,47 @@
       <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="100" selection-start="2516" selection-end="2516" vertical-scroll-proportion="0.88590604">
-              <folding />
+            <state line="64" column="95" selection-start="1555" selection-end="1590" vertical-scroll-proportion="0.44368133">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java">
+      <file leaf-file-name="Raptor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Raptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="89" selection-start="1080" selection-end="1080" vertical-scroll-proportion="0.0">
+            <state line="52" column="71" selection-start="1238" selection-end="1238" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stego.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/sprites/stego.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="Laser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Laser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="46" selection-start="1967" selection-end="1967" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameScreen.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/GameScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="82" column="30" selection-start="1915" selection-end="1915" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/InputManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="9" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -127,30 +150,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/hasherr/skelebomber/entity/Player.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/skelebomber/entity/Bomb.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/TextureLoader.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/Sprite.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Direction.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/InputManager.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Laser.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Raptor.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Shoot.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/TextureHandler.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/math/Vector2.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/GameScreen.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/ScreenManager.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/InputManager.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/EntityHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Raptor.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/GameScreen.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
+    <option name="x" value="1357" />
     <option name="y" value="-9" />
-    <option name="width" value="1310" />
-    <option name="height" value="786" />
+    <option name="width" value="1618" />
+    <option name="height" value="918" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -198,7 +221,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -254,6 +276,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dinopizzaattack" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="math" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Skelebomber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DinoPizzaAttack" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dinopizzaattack" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -321,6 +369,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -520,7 +569,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1310" height="786" extended-state="6" />
+    <frame x="1357" y="-9" width="1618" height="918" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -536,8 +585,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2576244" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.27331188" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="34" y="517" width="1246" height="170" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17824967" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.27320954" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="34" y="517" width="1246" height="170" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -614,6 +663,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/res/sprites/stego.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.7.0_45/src.zip!/java/lang/System.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="19" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.3321739" />
@@ -621,26 +675,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Direction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="31" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/InputManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="94" selection-start="745" selection-end="745" vertical-scroll-proportion="0.17114094" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="70" selection-start="629" selection-end="629" vertical-scroll-proportion="0.5704698">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Laser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="24" selection-start="1993" selection-end="1994" vertical-scroll-proportion="0.6291946" />
+        <state line="10" column="31" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Shoot.java">
@@ -651,21 +686,6 @@
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/TextureHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="51" selection-start="897" selection-end="897" vertical-scroll-proportion="0.74161077" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Raptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="48" selection-start="396" selection-end="396" vertical-scroll-proportion="0.4010067" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/math/Vector2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="50" selection-start="571" selection-end="571" vertical-scroll-proportion="0.5704698" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/GameScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="25" selection-start="697" selection-end="697" vertical-scroll-proportion="0.65604025" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/Screen.java">
@@ -687,17 +707,61 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="41" selection-start="398" selection-end="398" vertical-scroll-proportion="0.39932886">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/math/Vector2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="30" selection-start="564" selection-end="564" vertical-scroll-proportion="0.65604025">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Laser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="46" selection-start="1967" selection-end="1967" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Raptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="71" selection-start="1238" selection-end="1238" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/InputManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="9" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="89" selection-start="1080" selection-end="1080" vertical-scroll-proportion="0.0">
+        <state line="47" column="64" selection-start="1533" selection-end="1534" vertical-scroll-proportion="0.6771978">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/screens/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="30" selection-start="1915" selection-end="1915" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="100" selection-start="2516" selection-end="2516" vertical-scroll-proportion="0.88590604">
-          <folding />
+        <state line="64" column="95" selection-start="1555" selection-end="1590" vertical-scroll-proportion="0.44368133">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -4,11 +4,7 @@ import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
-import org.lwjgl.Sys;
 import org.newdawn.slick.opengl.Texture;
-
-import java.util.ArrayList;
-
 import static org.lwjgl.opengl.GL11.*;
 
 /**
@@ -21,6 +17,10 @@ public class Player extends Entity implements Shoot
     Direction faceDirection;
     Vector2 velocity;
     Texture playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
+    double moveSpeed;
+
+    // In-game attributes.
+    int health = 100;
 
     // Player constructor.
     public Player(int x, int y)
@@ -45,24 +45,40 @@ public class Player extends Entity implements Shoot
     // Move method so that player can change positions in 2.5D.
     public void move(Direction dir)
     {
+        moveSpeed = 60 * Game.getDeltaTime();
+        handleCollision();
+
+
 
         if (dir == Direction.NORTH)
         {
-            velocity.y += 60 * Game.getDeltaTime();
-        }
+            velocity.y += moveSpeed;
+    }
         if (dir == Direction.SOUTH)
         {
-            velocity.y += -60f * Game.getDeltaTime();
+            velocity.y += -moveSpeed;
         }
         if (dir == Direction.EAST)
         {
             setFaceDirection(dir);
-            velocity.x += 60f * Game.getDeltaTime();
+            velocity.x += moveSpeed;
         }
         if (dir == Direction.WEST)
         {
             setFaceDirection(dir);
-            velocity.x += -60f * Game.getDeltaTime();
+            velocity.x += -moveSpeed;
+        }
+    }
+
+    private void handleCollision()
+    {
+        if (pos.x <= -1)
+        {
+            moveSpeed = 0.0;
+        }
+        else if (pos.x >= Game.WIDTH)
+        {
+            pos.x = Game.WIDTH;
         }
     }
 
@@ -85,6 +101,7 @@ public class Player extends Entity implements Shoot
         float rightOffSet = 0f;
         float leftOffSet = 0f;
         float numOfSprites = 8f;
+
         if (faceDirection == Direction.EAST)
         {
             rightOffSet = 2f;

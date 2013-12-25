@@ -22,7 +22,6 @@ public class Game
 
     public static void main(String[] args) // Main method for running.
     {
-
         new Game().initGL(WIDTH, HEIGHT); // Start the game.
     }
 
