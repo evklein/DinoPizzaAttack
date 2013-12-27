@@ -4,7 +4,12 @@ import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
+import javax.swing.Timer;
 import org.newdawn.slick.opengl.Texture;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import static org.lwjgl.opengl.GL11.*;
 
 /**
@@ -19,6 +24,16 @@ public class Player extends Entity implements Shoot
     Texture playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
     double moveSpeed;
 
+    // Animation and sprite characteristics.
+    float rightOffSet = 0f;
+    float leftOffSet = 0f;
+    float numOfSprites = 8f;
+
+    Timer animationTimer;
+    boolean eastIsSet = false;
+    boolean westIsSet = false;
+    boolean animationTimerHasStarted = false;
+
     // In-game attributes.
     int health = 100;
 
@@ -27,7 +42,6 @@ public class Player extends Entity implements Shoot
     {
         pos = new Vector2(x, y);
         velocity = new Vector2(0.0);
-
     }
 
     private void setFaceDirection(Direction dir)
@@ -42,18 +56,83 @@ public class Player extends Entity implements Shoot
         }
     }
 
-    // Move method so that player can change positions in 2.5D.
+    // PLAYER ANIMATION.
+
+    public void setOffSetAnimationBuffer()
+    {
+        if (faceDirection == Direction.EAST && !eastIsSet)
+        {
+            rightOffSet = 1f;
+            leftOffSet = 2f;
+
+            eastIsSet = true;
+            westIsSet = false;
+        }
+        else if (faceDirection == Direction.WEST && !westIsSet)
+        {
+            rightOffSet = 7f;
+            leftOffSet = 8f;
+
+            eastIsSet = false;
+            westIsSet = true;
+        }
+    }
+
+    private void doAnimation()
+    {
+        setOffSetAnimationBuffer();
+        animationTimer = new Timer(100, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (faceDirection == Direction.WEST)
+                {
+                    if (leftOffSet < 4)
+                    {
+                        rightOffSet++;
+                        leftOffSet++;
+                    }
+                    else
+                    {
+                        rightOffSet = 1;
+                        leftOffSet = 2;
+                    }
+                }
+                else if (faceDirection == Direction.EAST)
+                {
+                    if (rightOffSet > 5)
+                    {
+                        rightOffSet--;
+                        leftOffSet--;
+                    }
+                    else
+                    {
+                        rightOffSet = 7;
+                        leftOffSet = 8;
+                    }
+                }
+            }
+        });
+
+        if (!animationTimerHasStarted)
+        {
+            animationTimer.start();
+            animationTimerHasStarted = true;
+        }
+    }
+
+
+    // OTHER PLAYER METHODS: MOVING, COLLISION, SHOOTING.
     public void move(Direction dir)
     {
         moveSpeed = 60 * Game.getDeltaTime();
-        handleCollision();
-
-
+        doAnimation();
 
         if (dir == Direction.NORTH)
         {
             velocity.y += moveSpeed;
-    }
+        }
         if (dir == Direction.SOUTH)
         {
             velocity.y += -moveSpeed;
@@ -70,16 +149,9 @@ public class Player extends Entity implements Shoot
         }
     }
 
-    private void handleCollision()
+    private void handlePlayerCollision()
     {
-        if (pos.x <= -1)
-        {
-            moveSpeed = 0.0;
-        }
-        else if (pos.x >= Game.WIDTH)
-        {
-            pos.x = Game.WIDTH;
-        }
+
     }
 
     // Fires a single projectile in the direction of the mouse.
@@ -88,6 +160,8 @@ public class Player extends Entity implements Shoot
     {
         Laser projectile = new Laser(this, direction);
     }
+
+    // DRAWING AND UPDATING THE PLAYER.
 
     @Override
     public Texture getSprite()
@@ -98,33 +172,19 @@ public class Player extends Entity implements Shoot
     @Override
     public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
-        float rightOffSet = 0f;
-        float leftOffSet = 0f;
-        float numOfSprites = 8f;
-
-        if (faceDirection == Direction.EAST)
-        {
-            rightOffSet = 2f;
-            leftOffSet = 1f;
-        }
-        else if (faceDirection == Direction.WEST)
-        {
-            rightOffSet = 6f;
-            leftOffSet = 5f;
-        }
-        playerSprite.bind();
+        getSprite().bind();
         glBegin(GL_QUADS);
             glTexCoord2f(leftOffSet / numOfSprites, 1f);
             glVertex2d(pos.x, pos.y);
 
             glTexCoord2f(rightOffSet / numOfSprites, 1f);
-            glVertex2d(pos.x + (playerSprite.getImageWidth() / 8), pos.y);
+            glVertex2d(pos.x + (getSprite().getImageWidth() / 8), pos.y);
 
             glTexCoord2f(rightOffSet / numOfSprites, 0f);
-            glVertex2d(pos.x + (playerSprite.getImageWidth() / 8), pos.y + (playerSprite.getImageHeight()));
+            glVertex2d(pos.x + (getSprite().getImageWidth() / 8), pos.y + (getSprite().getImageHeight()));
 
             glTexCoord2f(leftOffSet / numOfSprites, 0f);
-            glVertex2d(pos.x, pos.y + (playerSprite.getImageHeight()));
+            glVertex2d(pos.x, pos.y + (getSprite().getImageHeight()));
         glEnd();
     }
 
@@ -140,5 +200,4 @@ public class Player extends Entity implements Shoot
         pos.x += velocity.x;
         pos.y += velocity.y;
     }
-
 }
