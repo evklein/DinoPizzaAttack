@@ -81,7 +81,7 @@ public class Player extends Entity implements Shoot
     private void doAnimation()
     {
         setOffSetAnimationBuffer();
-        animationTimer = new Timer(100, new ActionListener()
+        animationTimer = new Timer(500, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -95,16 +95,17 @@ public class Player extends Entity implements Shoot
                     }
                     else
                     {
-                        rightOffSet = 1;
-                        leftOffSet = 2;
+                        rightOffSet = 0;
+                        leftOffSet = 1;
                     }
                 }
                 else if (faceDirection == Direction.EAST)
                 {
-                    if (rightOffSet > 5)
+                    if (rightOffSet > 4)
                     {
                         rightOffSet--;
                         leftOffSet--;
+
                     }
                     else
                     {
