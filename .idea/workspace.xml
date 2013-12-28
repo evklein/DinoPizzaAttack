@@ -25,6 +25,7 @@
     <file path="/TextureHandler.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384299112078" ignored="false" />
     <file path="/EntityHandler.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1384993961465" ignored="false" />
     <file path="/README.md" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1388024028054" ignored="false" />
+    <file path="/AnimationTool.java" changelist="1a10be48-1bbc-4093-8a7f-b7be4305101d" time="1388206432573" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,13 +92,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="47" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.51342285">
+            <state line="51" column="28" selection-start="1355" selection-end="1355" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#2030#2982#0" expanded="true" />
                 <element signature="e#2971#2972#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimationTool.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/AnimationTool.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="19" selection-start="675" selection-end="675" vertical-scroll-proportion="0.70434785">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,7 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/TextureLoader.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/Sprite.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Direction.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Entity.java" />
@@ -184,6 +195,7 @@
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/core/Game.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/AnimationTool.java" />
       </list>
     </option>
   </component>
@@ -681,11 +693,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Shoot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="77" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/TextureHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="51" selection-start="897" selection-end="897" vertical-scroll-proportion="0.74161077" />
@@ -778,10 +785,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/entity/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="47" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.51342285">
+        <state line="51" column="28" selection-start="1355" selection-end="1355" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#2030#2982#0" expanded="true" />
             <element signature="e#2971#2972#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/dinopizzaattack/graphics/AnimationTool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="19" selection-start="675" selection-end="675" vertical-scroll-proportion="0.70434785">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
