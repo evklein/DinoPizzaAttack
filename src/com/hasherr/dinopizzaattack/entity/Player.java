@@ -78,6 +78,7 @@ public class Player extends Entity implements Shoot
         }
     }
 
+
     private void doAnimation()
     {
         setOffSetAnimationBuffer();
