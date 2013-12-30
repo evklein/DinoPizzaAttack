@@ -1,13 +1,11 @@
 package com.hasherr.dinopizzaattack.entity;
 
-import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -62,6 +60,7 @@ public class Raptor extends Entity
 
             glTexCoord2d(0.0, 0.0);
             glTexCoord2d(pos.x, pos.y + raptorSprite.getImageHeight());
+        glEnd();
     }
 
     @Override

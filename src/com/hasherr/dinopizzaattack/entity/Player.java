@@ -2,6 +2,7 @@ package com.hasherr.dinopizzaattack.entity;
 
 import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.graphics.AnimationTool;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
 import javax.swing.Timer;
@@ -19,20 +20,22 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Player extends Entity implements Shoot
 {
+    Timer animationTimer;
+    float leftOffset = 0f;
+    float rightOffset = 0f;
+
+    boolean eastIsSet = false;
+    boolean westIsSet = false;
+    boolean clockHasStarted = false;
+
     Direction faceDirection;
     Vector2 velocity;
     Texture playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
     double moveSpeed;
 
     // Animation and sprite characteristics.
-    float rightOffSet = 0f;
-    float leftOffSet = 0f;
+    AnimationTool playerAnimationTool;
     float numOfSprites = 8f;
-
-    Timer animationTimer;
-    boolean eastIsSet = false;
-    boolean westIsSet = false;
-    boolean animationTimerHasStarted = false;
 
     // In-game attributes.
     int health = 100;
@@ -42,6 +45,8 @@ public class Player extends Entity implements Shoot
     {
         pos = new Vector2(x, y);
         velocity = new Vector2(0.0);
+
+        playerAnimationTool = new AnimationTool(numOfSprites);
     }
 
     private void setFaceDirection(Direction dir)
@@ -58,78 +63,77 @@ public class Player extends Entity implements Shoot
 
     // PLAYER ANIMATION.
 
-    public void setOffSetAnimationBuffer()
-    {
-        if (faceDirection == Direction.EAST && !eastIsSet)
-        {
-            rightOffSet = 1f;
-            leftOffSet = 2f;
-
-            eastIsSet = true;
-            westIsSet = false;
-        }
-        else if (faceDirection == Direction.WEST && !westIsSet)
-        {
-            rightOffSet = 7f;
-            leftOffSet = 8f;
-
-            eastIsSet = false;
-            westIsSet = true;
-        }
-    }
-
-
-    private void doAnimation()
-    {
-        setOffSetAnimationBuffer();
-        animationTimer = new Timer(500, new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                if (faceDirection == Direction.WEST)
-                {
-                    if (leftOffSet < 4)
-                    {
-                        rightOffSet++;
-                        leftOffSet++;
-                    }
-                    else
-                    {
-                        rightOffSet = 0;
-                        leftOffSet = 1;
-                    }
-                }
-                else if (faceDirection == Direction.EAST)
-                {
-                    if (rightOffSet > 4)
-                    {
-                        rightOffSet--;
-                        leftOffSet--;
-
-                    }
-                    else
-                    {
-                        rightOffSet = 7;
-                        leftOffSet = 8;
-                    }
-                }
-            }
-        });
-
-        if (!animationTimerHasStarted)
-        {
-            animationTimer.start();
-            animationTimerHasStarted = true;
-        }
-    }
+//    public void setOffsetAnimationBuffer()
+//    {
+//        if (faceDirection == Direction.EAST && !eastIsSet)
+//        {
+//            rightOffset = 1f;
+//            leftOffset = 2f;
+//
+//            eastIsSet = true;
+//            westIsSet = false;
+//        }
+//        else if (faceDirection == Direction.WEST && !westIsSet)
+//        {
+//            rightOffset = 7f;
+//            leftOffset = 8f;
+//
+//            eastIsSet = false;
+//            westIsSet = true;
+//        }
+//    }
+//
+//
+//    private void doAnimation()
+//    {
+//        setOffsetAnimationBuffer();
+//        animationTimer = new Timer(250, new ActionListener()
+//        {
+//            @Override
+//            public void actionPerformed(ActionEvent e)
+//            {
+//                if (faceDirection == Direction.WEST)
+//                {
+//                    if (leftOffset < 4)
+//                    {
+//                        rightOffset++;
+//                        leftOffset++;
+//                    }
+//                    else
+//                    {
+//                        rightOffset = 0;
+//                        leftOffset = 1;
+//                    }
+//                }
+//                else if (faceDirection == Direction.EAST)
+//                {
+//                    if (rightOffset > 4)
+//                    {
+//                        rightOffset--;
+//                        leftOffset--;
+//
+//                    }
+//                    else
+//                    {
+//                        rightOffset = 7;
+//                        leftOffset = 8;
+//                    }
+//                }
+//            }
+//        });
+//
+//        if (clockHasStarted)
+//        {
+//            animationTimer.start();
+//            clockHasStarted = true;
+//        }
+//    }
 
 
     // OTHER PLAYER METHODS: MOVING, COLLISION, SHOOTING.
     public void move(Direction dir)
     {
         moveSpeed = 60 * Game.getDeltaTime();
-        doAnimation();
 
         if (dir == Direction.NORTH)
         {
@@ -174,19 +178,23 @@ public class Player extends Entity implements Shoot
     @Override
     public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
+        playerAnimationTool.doAnimation(faceDirection);
+
         getSprite().bind();
         glBegin(GL_QUADS);
-            glTexCoord2f(leftOffSet / numOfSprites, 1f);
+        {
+            glTexCoord2f(playerAnimationTool.getLeftOffset() / numOfSprites, 1f);
             glVertex2d(pos.x, pos.y);
 
-            glTexCoord2f(rightOffSet / numOfSprites, 1f);
-            glVertex2d(pos.x + (getSprite().getImageWidth() / 8), pos.y);
+            glTexCoord2f(playerAnimationTool.getRightOffset() / numOfSprites, 1f);
+            glVertex2d(pos.x + (getSprite().getImageWidth() / numOfSprites), pos.y);
 
-            glTexCoord2f(rightOffSet / numOfSprites, 0f);
-            glVertex2d(pos.x + (getSprite().getImageWidth() / 8), pos.y + (getSprite().getImageHeight()));
+            glTexCoord2f(playerAnimationTool.getRightOffset() / numOfSprites, 0f);
+            glVertex2d(pos.x + (getSprite().getImageWidth() / numOfSprites), pos.y + (getSprite().getImageHeight()));
 
-            glTexCoord2f(leftOffSet / numOfSprites, 0f);
+            glTexCoord2f(playerAnimationTool.getLeftOffset() / numOfSprites, 0f);
             glVertex2d(pos.x, pos.y + (getSprite().getImageHeight()));
+        }
         glEnd();
     }
 

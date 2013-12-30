@@ -65,6 +65,5 @@ public class Laser extends Entity
     {
         pos.x += normalizedDir.x *  (Game.getDeltaTime() * 1000);
         pos.y += normalizedDir.y * (Game.getDeltaTime() * 1000);
-
     }
 }
