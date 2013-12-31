@@ -5,11 +5,9 @@ import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.AnimationTool;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
+import com.hasherr.dinopizzaattack.graphics.AnimationCommand;
 import javax.swing.Timer;
 import org.newdawn.slick.opengl.Texture;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -21,16 +19,15 @@ import static org.lwjgl.opengl.GL11.*;
 public class Player extends Entity implements Shoot
 {
     Timer animationTimer;
-    float leftOffset = 0f;
-    float rightOffset = 0f;
+
+    double lastX, lastY;
 
     boolean eastIsSet = false;
     boolean westIsSet = false;
-    boolean clockHasStarted = false;
 
     Direction faceDirection;
     Vector2 velocity;
-    Texture playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
+    Texture playerSprite;
     double moveSpeed;
 
     // Animation and sprite characteristics.
@@ -46,6 +43,7 @@ public class Player extends Entity implements Shoot
         pos = new Vector2(x, y);
         velocity = new Vector2(0.0);
 
+        playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
         playerAnimationTool = new AnimationTool(numOfSprites);
     }
 
@@ -60,75 +58,6 @@ public class Player extends Entity implements Shoot
             faceDirection = dir;
         }
     }
-
-    // PLAYER ANIMATION.
-
-//    public void setOffsetAnimationBuffer()
-//    {
-//        if (faceDirection == Direction.EAST && !eastIsSet)
-//        {
-//            rightOffset = 1f;
-//            leftOffset = 2f;
-//
-//            eastIsSet = true;
-//            westIsSet = false;
-//        }
-//        else if (faceDirection == Direction.WEST && !westIsSet)
-//        {
-//            rightOffset = 7f;
-//            leftOffset = 8f;
-//
-//            eastIsSet = false;
-//            westIsSet = true;
-//        }
-//    }
-//
-//
-//    private void doAnimation()
-//    {
-//        setOffsetAnimationBuffer();
-//        animationTimer = new Timer(250, new ActionListener()
-//        {
-//            @Override
-//            public void actionPerformed(ActionEvent e)
-//            {
-//                if (faceDirection == Direction.WEST)
-//                {
-//                    if (leftOffset < 4)
-//                    {
-//                        rightOffset++;
-//                        leftOffset++;
-//                    }
-//                    else
-//                    {
-//                        rightOffset = 0;
-//                        leftOffset = 1;
-//                    }
-//                }
-//                else if (faceDirection == Direction.EAST)
-//                {
-//                    if (rightOffset > 4)
-//                    {
-//                        rightOffset--;
-//                        leftOffset--;
-//
-//                    }
-//                    else
-//                    {
-//                        rightOffset = 7;
-//                        leftOffset = 8;
-//                    }
-//                }
-//            }
-//        });
-//
-//        if (clockHasStarted)
-//        {
-//            animationTimer.start();
-//            clockHasStarted = true;
-//        }
-//    }
-
 
     // OTHER PLAYER METHODS: MOVING, COLLISION, SHOOTING.
     public void move(Direction dir)
@@ -178,7 +107,15 @@ public class Player extends Entity implements Shoot
     @Override
     public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
-        playerAnimationTool.doAnimation(faceDirection);
+        double stopBuffer = 0.9;
+        if (velocity.x <= stopBuffer & velocity.y <= stopBuffer & velocity.x >= -stopBuffer & velocity.y >= -stopBuffer)
+        {
+            playerAnimationTool.doAnimation(null);
+        }
+        else
+        {
+            playerAnimationTool.doAnimation(faceDirection);
+        }
 
         getSprite().bind();
         glBegin(GL_QUADS);
@@ -198,6 +135,7 @@ public class Player extends Entity implements Shoot
         glEnd();
     }
 
+    int counter = 1;
     // Update the player's coordinates.
     @Override
     public void update()

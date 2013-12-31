@@ -48,10 +48,6 @@ public class InputManager
             player.move(Direction.WEST);
         }
 
-        if (Keyboard.isKeyDown(Keyboard.KEY_O))
-        {
-        }
-
         // Shooting controls, player can only shoot one bullet per click.
         if (Mouse.isButtonDown(0)) // If left mouse click.
         {

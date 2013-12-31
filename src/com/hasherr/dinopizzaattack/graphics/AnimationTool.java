@@ -13,23 +13,26 @@ import java.awt.event.ActionListener;
  */
 public class AnimationTool
 {
-    Direction dir;
     Direction faceDirection;
+
+    static final int TIMER_INTERVAL = 100; // 100 milliseconds, 1/10 of a second.
     float numOfSprites;
+    float leftOffset;
+    float rightOffset;
 
-    final int TIMER_INTERVAL = 100;
-    float leftOffset = 0f;
-    float rightOffset = 0f;
-
-    boolean eastIsSet = false;
-    boolean westIsSet = false;
-    boolean clockHasStarted = false;
+    boolean eastIsSet;
+    boolean westIsSet;
+    boolean clockHasStarted;
 
     Timer animationTimer;
 
     public AnimationTool(float numOfSprites)
     {
         this.numOfSprites = numOfSprites;
+
+        eastIsSet = false;
+        westIsSet = false;
+        clockHasStarted = false;
     }
 
     private void setAnimationOffset(Direction faceDirection)
@@ -54,9 +57,9 @@ public class AnimationTool
         }
     }
 
-    public void doAnimation(Direction dire)
+    public void doAnimation(Direction dir)
     {
-        setAnimationOffset(dire);
+        setAnimationOffset(dir);
 
         animationTimer = new Timer(TIMER_INTERVAL, new ActionListener()
         {
@@ -92,6 +95,11 @@ public class AnimationTool
             }
         });
 
+        // Start the timer for the first time.
+        if (dir == null)
+        {
+            animationTimer.stop();
+        }
         if (!clockHasStarted)
         {
             animationTimer.start();
@@ -99,6 +107,11 @@ public class AnimationTool
         }
     }
 
-    public float getLeftOffset() { return leftOffset; }
+    public void stopAnimation()
+    {
+        animationTimer.stop();
+        clockHasStarted = false;
+    }
+    public float getLeftOffset()  { return leftOffset;  }
     public float getRightOffset() { return rightOffset; }
 }
