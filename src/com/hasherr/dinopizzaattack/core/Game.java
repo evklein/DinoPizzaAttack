@@ -15,17 +15,19 @@ import static org.lwjgl.opengl.GL11.*;
 public class Game
 {
     ScreenManager screenManager;
-    InputManager inputManager;
 
     private static double time, lastTime, frames, lastDelta, delta;
-    public static final int WIDTH = 1000, HEIGHT = 700;
+
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 700;
 
     public static void main(String[] args) // Main method for running.
     {
-        new Game().initGL(WIDTH, HEIGHT); // Start the game.
+        new Game().play(WIDTH, HEIGHT); // Start the game.
     }
 
-    private void initGL(int width, int height) // Displaying screen using OpenGL.
+    // Main game loop, runs the game at 60 frames per second.
+    private void play(int width, int height) // Displaying screen using OpenGL.
     {
         try
         {
@@ -48,8 +50,6 @@ public class Game
         glEnable(GL_BLEND);                                 // *
 
         screenManager = new ScreenManager();
-        inputManager = new InputManager();
-
 
         // Infinite game logic loop.
         while (!Display.isCloseRequested())
@@ -66,8 +66,6 @@ public class Game
 
             Display.sync(60); // Cap the FPS to 60 frames.
 
-            inputManager.pollInput(screenManager.getPlayer()); // Handle all player input for the game.
-
             // Render and update the game.
             screenManager.update();
             screenManager.render();
@@ -76,20 +74,11 @@ public class Game
         Display.destroy(); // If the user closes the game, dissolve all attributes.
     }
 
-    /* Timer methods. */
+    /*
+     * Timing methods.
+     */
 
-    // Return the system time in seconds.
-    public static double getTime()
-    {
-        return (double) Sys.getTime() / Sys.getTimerResolution();
-    }
-
-
-    public static double getDeltaTime()
-    {
-        return delta;
-    }
-
+    // Calculates the FPS and displays it once per second.
     private void displayFps()
     {
         if (getTime() - lastTime >= 1)
@@ -101,5 +90,16 @@ public class Game
         frames++;
     }
 
+    // Return the system time in seconds.
+    public static double getTime()
+    {
+        return (double) Sys.getTime() / Sys.getTimerResolution();
+    }
+
+    // Returns the length of time of a single frame.
+    public static double getDeltaTime()
+    {
+        return delta;
+    }
 }
 

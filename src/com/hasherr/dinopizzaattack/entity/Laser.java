@@ -1,6 +1,5 @@
 package com.hasherr.dinopizzaattack.entity;
 
-import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
@@ -28,6 +27,7 @@ public class Laser extends Entity
     Vector2 velocityVector = new Vector2(12.0); // Velocity variable to determine the speed of the laser.
     Vector2 normalizedDir; // Direction vector to handle where the laser is going.
 
+    // Laser constructor.
     public Laser(Player player, Vector2 vec)
     {
         pos = new Vector2(player.pos.x + 40.0, player.pos.y + 40.0); // Set player position.
@@ -42,6 +42,7 @@ public class Laser extends Entity
         return laserSprite;
     }
 
+    // Draw the laser onto the screen.
     @Override
     public void draw()
     {
@@ -61,7 +62,9 @@ public class Laser extends Entity
         glEnd();
     }
 
-    @Override public void update()
+    // Update the laser's position.
+    @Override
+    public void update()
     {
         pos.x += normalizedDir.x *  (Game.getDeltaTime() * 1000);
         pos.y += normalizedDir.y * (Game.getDeltaTime() * 1000);

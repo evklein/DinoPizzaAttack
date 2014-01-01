@@ -1,6 +1,7 @@
 package com.hasherr.dinopizzaattack.screens;
 
 import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.core.InputManager;
 import com.hasherr.dinopizzaattack.entity.Player;
 
 import java.util.ArrayList;
@@ -15,15 +16,19 @@ public class ScreenManager
     /* Treat the screens like a stack, using pop() and push() methods
        to control the user's experience between multiple screens.
      */
-    ArrayList<Screen> runningScreens = new ArrayList<Screen>();
+    ArrayList<Screen> runningScreens;
+    InputManager inputManager;
 
     // Temporary constructor.
     public ScreenManager()
     {
+        runningScreens = new ArrayList<Screen>();
+        inputManager = new InputManager();
+
         runningScreens.add(new GameScreen());
     }
 
-    private Screen getLast()
+    private Screen getLastScreen()
     {
         return runningScreens.get(runningScreens.size() - 1);
     }
@@ -41,13 +46,14 @@ public class ScreenManager
     // Renders the screen at a continuous rate.
     public void render()
     {
-       getLast().render();
+       getLastScreen().render();
     }
 
     // Updates the screen every frame.
     public void update()
     {
-        getLast().update();
+        inputManager.pollInput(getLastScreen(), getPlayer());
+        getLastScreen().update();
     }
 
     // Return the player if needed.
@@ -55,9 +61,9 @@ public class ScreenManager
     {
         Player playerToReturn;
 
-        if (getLast() instanceof GameScreen)
+        if (getLastScreen() instanceof GameScreen)
         {
-            playerToReturn = ((GameScreen) getLast()).player;
+            playerToReturn = ((GameScreen) getLastScreen()).getPlayer();
         }
         else
         {

@@ -24,7 +24,6 @@ public class Raptor extends Entity
     public static ArrayList<Raptor> allRaptors = new ArrayList<Raptor>();
     public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
 
-
     public Raptor(Player player)
     {
         this.player = player;
@@ -34,6 +33,7 @@ public class Raptor extends Entity
         pos.y = (Math.random() * Game.HEIGHT);
     }
 
+    // Moves the raptor's position.
     public void move()
     {
         pos.addVector(player.pos.getNormalizedVector());
@@ -45,6 +45,7 @@ public class Raptor extends Entity
         return raptorSprite;
     }
 
+    // Draws the raptor.
     @Override
     public void draw()
     {
@@ -63,6 +64,7 @@ public class Raptor extends Entity
         glEnd();
     }
 
+    // Updates the raptor.
     @Override
     public void update()
     {

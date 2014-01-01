@@ -5,7 +5,7 @@ import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.graphics.AnimationTool;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
-import com.hasherr.dinopizzaattack.graphics.AnimationCommand;
+
 import javax.swing.Timer;
 import org.newdawn.slick.opengl.Texture;
 
@@ -20,15 +20,9 @@ public class Player extends Entity implements Shoot
 {
     Timer animationTimer;
 
-    double lastX, lastY;
-
-    boolean eastIsSet = false;
-    boolean westIsSet = false;
-
     Direction faceDirection;
     Vector2 velocity;
     Texture playerSprite;
-    double moveSpeed;
 
     // Animation and sprite characteristics.
     AnimationTool playerAnimationTool;
@@ -47,6 +41,11 @@ public class Player extends Entity implements Shoot
         playerAnimationTool = new AnimationTool(numOfSprites);
     }
 
+    /*
+     * Player movement, collision, shooting, and other things to handle.
+     */
+
+    // Sets the player's face direction for animation purposes.
     private void setFaceDirection(Direction dir)
     {
         if (dir == Direction.NORTH || dir == Direction.SOUTH)
@@ -59,10 +58,10 @@ public class Player extends Entity implements Shoot
         }
     }
 
-    // OTHER PLAYER METHODS: MOVING, COLLISION, SHOOTING.
+    // Gets player input and uses it to move the player.
     public void move(Direction dir)
     {
-        moveSpeed = 60 * Game.getDeltaTime();
+        double moveSpeed = 60 * Game.getDeltaTime();
 
         if (dir == Direction.NORTH)
         {
@@ -84,6 +83,7 @@ public class Player extends Entity implements Shoot
         }
     }
 
+    // Detects player collision on the walls and other obstacles.
     private void handlePlayerCollision()
     {
 
@@ -96,7 +96,9 @@ public class Player extends Entity implements Shoot
         Laser projectile = new Laser(this, direction);
     }
 
-    // DRAWING AND UPDATING THE PLAYER.
+    /*
+     * Drawing, animating, and updating the player.
+     */
 
     @Override
     public Texture getSprite()
@@ -104,10 +106,11 @@ public class Player extends Entity implements Shoot
          return playerSprite;
     }
 
+    // Draw the player.
     @Override
     public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
-        double stopBuffer = 0.9;
+        double stopBuffer = 0.3;
         if (velocity.x <= stopBuffer & velocity.y <= stopBuffer & velocity.x >= -stopBuffer & velocity.y >= -stopBuffer)
         {
             playerAnimationTool.doAnimation(null);
@@ -135,8 +138,7 @@ public class Player extends Entity implements Shoot
         glEnd();
     }
 
-    int counter = 1;
-    // Update the player's coordinates.
+    // Update the player.
     @Override
     public void update()
     {

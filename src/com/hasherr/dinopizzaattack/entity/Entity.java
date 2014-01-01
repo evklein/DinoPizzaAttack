@@ -1,6 +1,5 @@
 package com.hasherr.dinopizzaattack.entity;
 
-import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.math.Vector2;
 import org.newdawn.slick.opengl.Texture;
 
