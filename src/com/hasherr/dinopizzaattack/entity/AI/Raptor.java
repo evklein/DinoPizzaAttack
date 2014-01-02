@@ -1,6 +1,8 @@
-package com.hasherr.dinopizzaattack.entity;
+package com.hasherr.dinopizzaattack.entity.AI;
 
 import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.entity.Entity;
+import com.hasherr.dinopizzaattack.entity.Player;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
 import org.newdawn.slick.opengl.Texture;
@@ -17,16 +19,17 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Raptor extends Entity
 {
-    Texture raptorSprite = TextureHandler.getTexture("raptor", "png");
-    Vector2 raptorSpeed = new Vector2(56.0);
-    Player player;
-
     public static ArrayList<Raptor> allRaptors = new ArrayList<Raptor>();
     public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
+
+    Vector2 raptorSpeed;
+    Player player;
 
     public Raptor(Player player)
     {
         this.player = player;
+
+        raptorSpeed = new Vector2(56.0);
         Raptor.allRaptors.add(this);
 
         pos.x = (Math.random() * Game.WIDTH);
@@ -42,25 +45,26 @@ public class Raptor extends Entity
     @Override
     public Texture getSprite()
     {
-        return raptorSprite;
+        return TextureHandler.getTexture("raptor", "png");
     }
 
     // Draws the raptor.
     @Override
     public void draw()
     {
+        getSprite().bind();
         glBegin(GL_QUADS);
             glTexCoord2d(0.0, 1.0);
             glVertex2d(pos.x, pos.y);
 
             glTexCoord2d(1.0, 1.0);
-            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y);
+            glVertex2d(pos.x + getSprite().getImageWidth(), pos.y);
 
             glTexCoord2d(1.0, 0.0);
-            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y + raptorSprite.getImageHeight());
+            glVertex2d(pos.x + getSprite().getImageWidth(), pos.y + getSprite().getImageHeight());
 
             glTexCoord2d(0.0, 0.0);
-            glTexCoord2d(pos.x, pos.y + raptorSprite.getImageHeight());
+            glTexCoord2d(pos.x, pos.y + getSprite().getImageHeight());
         glEnd();
     }
 

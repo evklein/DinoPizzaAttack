@@ -3,9 +3,7 @@ package com.hasherr.dinopizzaattack.screens;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.Laser;
 import com.hasherr.dinopizzaattack.entity.Player;
-import com.hasherr.dinopizzaattack.entity.Raptor;
-
-import static org.lwjgl.opengl.GL11.*;
+import com.hasherr.dinopizzaattack.entity.AI.Raptor;
 
 /**
  * Created with IntelliJ IDEA.

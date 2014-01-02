@@ -37,7 +37,6 @@ public class Player extends Entity implements Shoot
         pos = new Vector2(x, y);
         velocity = new Vector2(0.0);
 
-        playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
         playerAnimationTool = new AnimationTool(numOfSprites);
     }
 
@@ -103,7 +102,7 @@ public class Player extends Entity implements Shoot
     @Override
     public Texture getSprite()
     {
-         return playerSprite;
+         return TextureHandler.getTexture("dino_spritesheet", "png");
     }
 
     // Draw the player.

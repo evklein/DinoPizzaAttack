@@ -23,6 +23,7 @@ public class Game
 
     public static void main(String[] args) // Main method for running.
     {
+
         new Game().play(WIDTH, HEIGHT); // Start the game.
     }
 
@@ -56,7 +57,6 @@ public class Game
         {
             // Operations to do with timing.
             displayFps();
-
             time = getTime();
             delta = time - lastDelta;
             lastDelta = time;
@@ -71,7 +71,9 @@ public class Game
             screenManager.render();
         }
 
-        Display.destroy(); // If the user closes the game, dissolve all attributes.
+        // If the user closes the game, dissolve all attributes and exit the game.
+        Display.destroy();
+        System.exit(0);
     }
 
     /*
