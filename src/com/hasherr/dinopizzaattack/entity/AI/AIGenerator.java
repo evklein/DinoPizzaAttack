@@ -1,7 +1,8 @@
-package com.hasherr.dinopizzaattack.entity.AI;
+package com.hasherr.dinopizzaattack.entity.ai;
 
 import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.entity.Player;
 import com.hasherr.dinopizzaattack.math.Vector2;
 
 import java.util.Random;
@@ -14,7 +15,6 @@ import java.util.Random;
 public class AIGenerator
 {
     Random generator;
-
     Direction side;
 
     public AIGenerator()
@@ -58,9 +58,9 @@ public class AIGenerator
 
         return startingPos;
     }
-//
-//    public Vector2 getDirectionVector()
-//    {
-//
-//    }
+
+    public Raptor generateNewEntity(Player player)
+    {
+        return new Raptor(generateInitialCoordinates(), player);
+    }
 }

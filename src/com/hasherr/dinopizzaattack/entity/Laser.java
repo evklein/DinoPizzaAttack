@@ -28,10 +28,10 @@ public class Laser extends Entity
     Vector2 normalizedDir; // Direction vector to handle where the laser is going.
 
     // Laser constructor.
-    public Laser(Player player, Vector2 vec)
+    public Laser(Player player, Vector2 mouse)
     {
         pos = new Vector2(player.pos.x + 20.0, player.pos.y + 20.0); // Set initial laser position.
-        normalizedDir = new Vector2(vec.x - (player.pos.x), vec.y - (player.pos.y)).getNormalizedVector();
+        normalizedDir = new Vector2(mouse.x - (player.pos.x), mouse.y - (player.pos.y)).getNormalizedVector();
 
         Laser.allLasers.add(this);  // Add this laser to a list of updated and rendered lasers.
     }

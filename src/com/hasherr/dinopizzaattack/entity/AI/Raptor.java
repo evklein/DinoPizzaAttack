@@ -1,4 +1,4 @@
-package com.hasherr.dinopizzaattack.entity.AI;
+package com.hasherr.dinopizzaattack.entity.ai;
 
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.Entity;
@@ -23,22 +23,18 @@ public class Raptor extends Entity
     public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
 
     Vector2 raptorSpeed;
-    Texture raptorSprite;
     Player player;
+    Vector2 direction;
+    Texture raptorSprite;
 
-    public Raptor(Player player)
+    public Raptor(Vector2 startingPos, Player player)
     {
-        raptorSpeed = new Vector2(56.0);
-        TextureHandler.getTexture("raptor", "png");
+        Raptor.allRaptors.add(this);
+        pos = new Vector2(300, 300);
         this.player = player;
 
-        Raptor.allRaptors.add(this);
-    }
-
-    // Moves the raptor's position.
-    public void move()
-    {
-        pos.addVector(player.pos.getNormalizedVector());
+        raptorSpeed = new Vector2(56.0);
+        raptorSprite = TextureHandler.getTexture("raptor", "png");
     }
 
     @Override
@@ -51,8 +47,9 @@ public class Raptor extends Entity
     @Override
     public void draw()
     {
-        getSprite().bind();
+        raptorSprite.bind();
         glBegin(GL_QUADS);
+        {
             glTexCoord2d(0.0, 1.0);
             glVertex2d(pos.x, pos.y);
 
@@ -64,6 +61,7 @@ public class Raptor extends Entity
 
             glTexCoord2d(0.0, 0.0);
             glTexCoord2d(pos.x, pos.y + getSprite().getImageHeight());
+        }
         glEnd();
     }
 
@@ -71,6 +69,8 @@ public class Raptor extends Entity
     @Override
     public void update()
     {
-        move();
+        direction = new Vector2(player.pos.x - (pos.x), player.pos.y - (pos.y)).getNormalizedVector();
+//        pos.x += direction.x + (Game.getDeltaTime() * 1000);
+//        pos.y += direction.y + (Game.getDeltaTime() * 1000);
     }
 }

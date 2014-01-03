@@ -1,7 +1,7 @@
 package com.hasherr.dinopizzaattack.screens;
 
-import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.core.InputManager;
+import com.hasherr.dinopizzaattack.entity.ai.AIGenerator;
 import com.hasherr.dinopizzaattack.entity.Player;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class ScreenManager
         runningScreens = new ArrayList<Screen>();
         inputManager = new InputManager();
 
-        runningScreens.add(new GameScreen());
+        runningScreens.add(new GameScreen()); // TEMPORARY.
     }
 
     private Screen getLastScreen()

@@ -32,7 +32,7 @@ public class Player extends Entity implements Shoot
     int health = 100;
 
     // Player constructor.
-    public Player(int x, int y)
+    public Player(double x, double y)
     {
         pos = new Vector2(x, y);
         velocity = new Vector2(0.0);

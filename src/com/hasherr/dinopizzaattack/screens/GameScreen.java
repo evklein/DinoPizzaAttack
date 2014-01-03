@@ -1,9 +1,11 @@
 package com.hasherr.dinopizzaattack.screens;
 
 import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.entity.ai.AIGenerator;
 import com.hasherr.dinopizzaattack.entity.Laser;
 import com.hasherr.dinopizzaattack.entity.Player;
-import com.hasherr.dinopizzaattack.entity.AI.Raptor;
+import com.hasherr.dinopizzaattack.entity.ai.Raptor;
+import com.hasherr.dinopizzaattack.math.Vector2;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,12 +14,13 @@ import com.hasherr.dinopizzaattack.entity.AI.Raptor;
  */
 public class GameScreen extends Screen
 {
-
     Player player; // Create a new player object.
+    AIGenerator aiGenerator;
 
     public GameScreen()
     {
-        player = new Player(0, 0);
+        player = new Player(0.0, 0.0);
+        aiGenerator = new AIGenerator();
     }
 
     @Override
@@ -39,6 +42,8 @@ public class GameScreen extends Screen
     @Override
     public void update()
     {
+        aiGenerator.generateNewEntity(player);
+
         for (Laser laser : Laser.allLasers)
         {
             laser.update();
@@ -60,13 +65,6 @@ public class GameScreen extends Screen
         for (Raptor raptor : Raptor.allRaptors)
         {
             raptor.update();
-
-            if(raptor.pos.x > Game.WIDTH + 80 || raptor.pos.x < -80 ||
-               raptor.pos.y > Game.HEIGHT + 80 || raptor.pos.y < -80)
-            {
-                Raptor.deadRaptors.add(raptor);
-            }
-
         }
 
         for (Raptor raptor : Raptor.deadRaptors)
