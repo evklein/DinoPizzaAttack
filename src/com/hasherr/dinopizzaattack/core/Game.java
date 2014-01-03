@@ -18,8 +18,8 @@ public class Game
 
     private static double time, lastTime, frames, lastDelta, delta;
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 700;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 500;
 
     public static void main(String[] args) // Main method for running.
     {
@@ -67,8 +67,8 @@ public class Game
             Display.sync(60); // Cap the FPS to 60 frames.
 
             // Render and update the game.
-            screenManager.update();
             screenManager.render();
+            screenManager.update();
         }
 
         // If the user closes the game, dissolve all attributes and exit the game.

@@ -70,7 +70,6 @@ public class InputManager
                 {
                     isMouseButtonDown = true;
                     player.shoot(mousePosition);
-                    System.out.println("X: " + Mouse.getX() + " Y: " + Mouse.getY());
                 }
             }
             else

@@ -28,8 +28,9 @@ public class Raptor extends Entity
 
     public Raptor(Vector2 startingPos, Player player)
     {
-        pos = new Vector2(300, 300);
+        pos = startingPos;
         this.player = player;
+        raptorSprite = TextureHandler.getTexture("raptor", "Png");
 
         Raptor.allRaptors.add(this);
     }
@@ -44,19 +45,20 @@ public class Raptor extends Entity
     @Override
     public void draw()
     {
+        raptorSprite.bind();
         glBegin(GL_QUADS);
         {
             glTexCoord2d(0.0, 1.0);
             glVertex2d(pos.x, pos.y);
 
             glTexCoord2d(1.0, 1.0);
-            glVertex2d(pos.x + 32, pos.y);
+            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y);
 
             glTexCoord2d(1.0, 0.0);
-            glVertex2d(pos.x + 32, pos.y + 32);
+            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y + raptorSprite.getImageHeight());
 
             glTexCoord2d(0.0, 0.0);
-            glTexCoord2d(pos.x, pos.y + 32);
+            glVertex2d(pos.x, pos.y + raptorSprite.getImageHeight());
         }
         glEnd();
     }
@@ -65,8 +67,9 @@ public class Raptor extends Entity
     @Override
     public void update()
     {
-        direction = new Vector2(player.pos.x - (pos.x), player.pos.y - (pos.y)).getNormalizedVector();
-//        pos.x += direction.x + (Game.getDeltaTime() * 1000);
-//        pos.y += direction.y + (Game.getDeltaTime() * 1000);
+        direction = new Vector2(pos.x - (player.pos.x), pos.y - (player.pos.y)).getNormalizedVector();
+
+        pos.x += direction.x + (Game.getDeltaTime() * 100);
+        pos.y += direction.y + (Game.getDeltaTime() * 100);
     }
 }

@@ -3,7 +3,6 @@ package com.hasherr.dinopizzaattack.graphics;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
-import org.lwjgl.opengl.GL11.*;
 
 import java.io.IOException;
 
