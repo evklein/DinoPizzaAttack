@@ -30,7 +30,7 @@ public class Laser extends Entity
     // Laser constructor.
     public Laser(Player player, Vector2 vec)
     {
-        pos = new Vector2(player.pos.x + 40.0, player.pos.y + 40.0); // Set player position.
+        pos = new Vector2(player.pos.x + 20.0, player.pos.y + 20.0); // Set initial laser position.
         normalizedDir = new Vector2(vec.x - (player.pos.x), vec.y - (player.pos.y)).getNormalizedVector();
 
         Laser.allLasers.add(this);  // Add this laser to a list of updated and rendered lasers.
@@ -66,7 +66,7 @@ public class Laser extends Entity
     @Override
     public void update()
     {
-        pos.x += normalizedDir.x *  (Game.getDeltaTime() * 1000);
+        pos.x += normalizedDir.x * (Game.getDeltaTime() * 1000);
         pos.y += normalizedDir.y * (Game.getDeltaTime() * 1000);
     }
 }

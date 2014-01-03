@@ -19,13 +19,13 @@ public class TextureHandler
     // Used to deliver a texture to entities for quad-rendering.
     public static Texture getTexture(String name, String ext)
     {
-        System.out.println(GL11.glGetInteger(GL11.GL_MAX_TEXTURE_SIZE));
         Texture texture = null;
         try
         {
-            texture = TextureLoader.getTexture(ext.toUpperCase(),
+            texture =  TextureLoader.getTexture(ext.toUpperCase(),
                     ResourceLoader.getResourceAsStream( "res/sprites/" + name + "." + ext.toLowerCase()));
-        } catch (IOException e)
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
             System.exit(0); // Exit the game if the texture isn't loaded properly.

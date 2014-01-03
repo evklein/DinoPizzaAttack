@@ -36,6 +36,7 @@ public class Player extends Entity implements Shoot
     {
         pos = new Vector2(x, y);
         velocity = new Vector2(0.0);
+        playerSprite = TextureHandler.getTexture("dino_spritesheet", "png");
 
         playerAnimationTool = new AnimationTool(numOfSprites);
     }
@@ -102,13 +103,14 @@ public class Player extends Entity implements Shoot
     @Override
     public Texture getSprite()
     {
-         return TextureHandler.getTexture("dino_spritesheet", "png");
+         return playerSprite;
     }
 
     // Draw the player.
     @Override
     public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
+        // Stop/start animation.
         double stopBuffer = 0.3;
         if (velocity.x <= stopBuffer & velocity.y <= stopBuffer & velocity.x >= -stopBuffer & velocity.y >= -stopBuffer)
         {
@@ -119,7 +121,7 @@ public class Player extends Entity implements Shoot
             playerAnimationTool.doAnimation(faceDirection);
         }
 
-        getSprite().bind();
+        playerSprite.bind();
         glBegin(GL_QUADS);
         {
             glTexCoord2f(playerAnimationTool.getLeftOffset() / numOfSprites, 1f);

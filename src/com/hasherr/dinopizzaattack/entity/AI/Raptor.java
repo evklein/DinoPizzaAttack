@@ -23,17 +23,16 @@ public class Raptor extends Entity
     public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
 
     Vector2 raptorSpeed;
+    Texture raptorSprite;
     Player player;
 
     public Raptor(Player player)
     {
+        raptorSpeed = new Vector2(56.0);
+        TextureHandler.getTexture("raptor", "png");
         this.player = player;
 
-        raptorSpeed = new Vector2(56.0);
         Raptor.allRaptors.add(this);
-
-        pos.x = (Math.random() * Game.WIDTH);
-        pos.y = (Math.random() * Game.HEIGHT);
     }
 
     // Moves the raptor's position.
@@ -45,7 +44,7 @@ public class Raptor extends Entity
     @Override
     public Texture getSprite()
     {
-        return TextureHandler.getTexture("raptor", "png");
+        return raptorSprite;
     }
 
     // Draws the raptor.
