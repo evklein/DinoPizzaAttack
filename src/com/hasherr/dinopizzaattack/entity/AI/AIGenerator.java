@@ -59,8 +59,8 @@ public class AIGenerator
         return startingPos;
     }
 
-    public Raptor generateNewEntity(Player player)
+    public void generateNewEntity(Player player)
     {
-        return new Raptor(generateInitialCoordinates(), player);
+        Raptor raptor = new Raptor(generateInitialCoordinates(), player);
     }
 }

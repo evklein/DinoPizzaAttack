@@ -111,8 +111,8 @@ public class Player extends Entity implements Shoot
     public void draw() // Draw the player sprite onto the screen from the player's sprite sheet.
     {
         // Stop/start animation.
-        double stopBuffer = 0.3;
-        if (velocity.x <= stopBuffer & velocity.y <= stopBuffer & velocity.x >= -stopBuffer & velocity.y >= -stopBuffer)
+        double stopSpeed = 0.3;
+        if (velocity.x <= stopSpeed & velocity.y <= stopSpeed & velocity.x >= stopSpeed & velocity.y >= stopSpeed)
         {
             playerAnimationTool.doAnimation(null);
         }

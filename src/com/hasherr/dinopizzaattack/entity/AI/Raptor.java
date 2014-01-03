@@ -22,19 +22,16 @@ public class Raptor extends Entity
     public static ArrayList<Raptor> allRaptors = new ArrayList<Raptor>();
     public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
 
-    Vector2 raptorSpeed;
     Player player;
     Vector2 direction;
     Texture raptorSprite;
 
     public Raptor(Vector2 startingPos, Player player)
     {
-        Raptor.allRaptors.add(this);
         pos = new Vector2(300, 300);
         this.player = player;
 
-        raptorSpeed = new Vector2(56.0);
-        raptorSprite = TextureHandler.getTexture("raptor", "png");
+        Raptor.allRaptors.add(this);
     }
 
     @Override
@@ -47,20 +44,19 @@ public class Raptor extends Entity
     @Override
     public void draw()
     {
-        raptorSprite.bind();
         glBegin(GL_QUADS);
         {
             glTexCoord2d(0.0, 1.0);
             glVertex2d(pos.x, pos.y);
 
             glTexCoord2d(1.0, 1.0);
-            glVertex2d(pos.x + getSprite().getImageWidth(), pos.y);
+            glVertex2d(pos.x + 32, pos.y);
 
             glTexCoord2d(1.0, 0.0);
-            glVertex2d(pos.x + getSprite().getImageWidth(), pos.y + getSprite().getImageHeight());
+            glVertex2d(pos.x + 32, pos.y + 32);
 
             glTexCoord2d(0.0, 0.0);
-            glTexCoord2d(pos.x, pos.y + getSprite().getImageHeight());
+            glTexCoord2d(pos.x, pos.y + 32);
         }
         glEnd();
     }
