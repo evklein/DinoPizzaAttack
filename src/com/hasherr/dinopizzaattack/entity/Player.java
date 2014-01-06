@@ -112,7 +112,7 @@ public class Player extends Entity implements Shoot
     {
         // Stop/start animation.
         double stopSpeed = 0.3;
-        if (velocity.x <= stopSpeed & velocity.y <= stopSpeed & velocity.x >= stopSpeed & velocity.y >= stopSpeed)
+        if (velocity.x <= stopSpeed && velocity.y <= stopSpeed && velocity.x >= -stopSpeed && velocity.y >= -stopSpeed)
         {
             playerAnimationTool.doAnimation(null);
         }

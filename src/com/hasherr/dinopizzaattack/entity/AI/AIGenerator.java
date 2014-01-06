@@ -24,8 +24,6 @@ public class AIGenerator
 
     private int getRand(int minimum, int maximum)
     {
-        Random generator = new Random();
-
         return generator.nextInt((maximum - minimum) + 1) + minimum;
     }
 
@@ -33,7 +31,7 @@ public class AIGenerator
     public Vector2 generateInitialCoordinates()
     {
         Vector2 startingPos;
-        int sideSignature = generator.nextInt(3);
+        int sideSignature = generator.nextInt(4);
 
         if (sideSignature == 0)
         {

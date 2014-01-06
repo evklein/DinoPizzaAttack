@@ -24,7 +24,6 @@ public class Laser extends Entity
 
 
     // Vectors.
-    Vector2 velocityVector = new Vector2(12.0); // Velocity variable to determine the speed of the laser.
     Vector2 normalizedDir; // Direction vector to handle where the laser is going.
 
     // Laser constructor.

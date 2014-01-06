@@ -5,8 +5,12 @@ import com.hasherr.dinopizzaattack.entity.ai.AIGenerator;
 import com.hasherr.dinopizzaattack.entity.Laser;
 import com.hasherr.dinopizzaattack.entity.Player;
 import com.hasherr.dinopizzaattack.entity.ai.Raptor;
+import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.opengl.Texture;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,29 +28,56 @@ import static org.lwjgl.opengl.GL11.glEnd;
 public class GameScreen extends Screen
 {
     Player player; // Create a new player object.
-    AIGenerator aiGenerator;
 
-    Timer aiTimer = new Timer(new Random().nextInt(1000), new ActionListener()
-    {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            aiGenerator.generateNewEntity(player);
-        }
-    });
+    AIGenerator aiGenerator;
+    Random aiRandom;
+    Timer aiTimer;
+    boolean aiIsRunning;
+    Texture background;
 
     public GameScreen()
     {
         player = new Player(300, 200);
+
+        aiRandom = new Random();
         aiGenerator = new AIGenerator();
+        aiIsRunning = false;
+        background = TextureHandler.getTexture("back", "Png");
 
-
-
+        // Create a timer which sets off randomly between 20 ms and 370 ms and sets off an enemy.
+        final int MIN_TIME = 20;
+        final int MAX_TIME = 350;
+//        aiTimer = new Timer(aiRandom.nextInt(MAX_TIME) + MIN_TIME, new ActionListener()
+//        {
+//            @Override
+//            public void actionPerformed(ActionEvent e)
+//            {
+//                aiGenerator.generateNewEntity(player);
+//            }
+//        });
     }
 
     @Override
     public void render()
     {
+        // Draw the background.
+        background.bind();
+        glBegin(GL_QUADS);
+        {
+            glTexCoord2d(0.0, 1.0);
+            glVertex2d(0, 0);
+
+            glTexCoord2d(1.0, 1.0);
+            glVertex2d(background.getImageWidth(), 0);
+
+            glTexCoord2d(1.0, 0.0);
+            glVertex2d(background.getImageWidth(), background.getImageHeight());
+
+            glTexCoord2d(0.0, 0.0);
+            glVertex2d(0, background.getImageHeight());
+        }
+        glEnd();
+
         for (Laser laser : Laser.allLasers)
         {
             laser.draw();
@@ -63,14 +94,18 @@ public class GameScreen extends Screen
     @Override
     public void update()
     {
+        // Start the AI if it hasn't started already.
+//        if (!aiIsRunning)
+//        {
+//            aiIsRunning = true;
+//            aiTimer.start();
+//        }
+
         if (Keyboard.isKeyDown(Keyboard.KEY_O))
         {
-            Raptor r = new Raptor(new Vector2(50, 100), player);
-            Raptor a = new Raptor(new Vector2(50, 125), player);
-            Raptor p = new Raptor(new Vector2(100, 100), player);
-            Raptor t = new Raptor(new Vector2(150, 100), player);
-            Raptor o = new Raptor(new Vector2(150, 150), player);
+            aiGenerator.generateNewEntity(player);
         }
+
         for (Laser laser : Laser.allLasers)
         {
             laser.update();
@@ -79,8 +114,8 @@ public class GameScreen extends Screen
             if (laser.pos.x > Game.WIDTH || laser.pos.x < 0 ||
                 laser.pos.y > Game.HEIGHT || laser.pos.y < 0)
             {
-                Laser.deadLasers.add(laser);
-            }
+            Laser.deadLasers.add(laser);
+        }
         }
 
         for (Laser laser : Laser.deadLasers)
@@ -91,12 +126,12 @@ public class GameScreen extends Screen
         Laser.deadLasers.clear();
 
 
-        for (Raptor raptor : Raptor.allRaptors)
+            for (Raptor raptor : Raptor.allRaptors)
         {
             raptor.update();
 
             // GC the raptors if they go out of bounds.
-            if (raptor.pos.x > Game.WIDTH + 1000 || raptor.pos.y < -1000)
+            if (raptor.pos.x > Game.WIDTH + 1000 || raptor.pos.y < -2000)
             {
                 Raptor.deadRaptors.add(raptor);
             }
@@ -109,11 +144,6 @@ public class GameScreen extends Screen
         Raptor.deadRaptors.clear();
 
         player.update();
-    }
-
-    private void createRaptors()
-    {
-
     }
 
     // Return current in-use player object.

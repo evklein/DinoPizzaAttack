@@ -23,8 +23,8 @@ public class Raptor extends Entity
     public static ArrayList<Raptor> deadRaptors = new ArrayList<Raptor>();
 
     Player player;
-    Vector2 direction;
     Texture raptorSprite;
+    Vector2 direction;
 
     public Raptor(Vector2 startingPos, Player player)
     {
@@ -32,6 +32,7 @@ public class Raptor extends Entity
         this.player = player;
         raptorSprite = TextureHandler.getTexture("raptor", "Png");
 
+        direction = new Vector2(player.pos.x - (startingPos.x), player.pos.y - (startingPos.y)).getNormalizedVector();
         Raptor.allRaptors.add(this);
     }
 
@@ -67,9 +68,8 @@ public class Raptor extends Entity
     @Override
     public void update()
     {
-        direction = new Vector2(pos.x - (player.pos.x), pos.y - (player.pos.y)).getNormalizedVector();
-
-        pos.x += direction.x + (Game.getDeltaTime() * 100);
-        pos.y += direction.y + (Game.getDeltaTime() * 100);
+        final int MAX_SPEED = 7;
+        pos.x += direction.x * (Game.getDeltaTime() * 100) * MAX_SPEED;
+        pos.y += direction.y * (Game.getDeltaTime() * 100) * MAX_SPEED;
     }
 }

@@ -18,12 +18,11 @@ public class Game
 
     private static double time, lastTime, frames, lastDelta, delta;
 
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 500;
+    public static final int WIDTH = 850;
+    public static final int HEIGHT = 650;
 
     public static void main(String[] args) // Main method for running.
     {
-
         new Game().play(WIDTH, HEIGHT); // Start the game.
     }
 
@@ -34,7 +33,8 @@ public class Game
         {
             Display.setDisplayMode(new DisplayMode(width, height));
             Display.create();
-        } catch (LWJGLException e)
+        }
+        catch (LWJGLException e)
         {
             e.printStackTrace();
             System.exit(0);

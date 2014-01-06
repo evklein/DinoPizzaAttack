@@ -44,7 +44,7 @@ public class Vector2 // 2D vector class for positions and movements of entities.
     }
 
     // Subtracts another vector from this class.
-    public void subVector(Vector2 vector)
+    public void subtractVector(Vector2 vector)
     {
         this.x -= vector.x;
         this.y -= vector.y;
