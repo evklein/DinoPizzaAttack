@@ -13,7 +13,8 @@ import java.awt.event.ActionListener;
  */
 public class AnimationTool
 {
-    Direction faceDirection;
+    Direction orientation;
+    Direction currentOrientation;
 
     static final int TIMER_INTERVAL = 100; // 100 milliseconds, 1/10 of a second.
     float numOfSprites;
@@ -30,16 +31,19 @@ public class AnimationTool
     {
         this.numOfSprites = numOfSprites;
 
+        rightOffset = 0f;
+        leftOffset = 1f;
+
         eastIsSet = false;
         westIsSet = false;
         clockHasStarted = false;
     }
 
-    private void setAnimationOffset(Direction faceDirection)
+    private void setAnimationOffset(Direction orientation)
     {
-        this.faceDirection = faceDirection;
+        this.orientation = orientation;
 
-        if (faceDirection == Direction.EAST && !eastIsSet)
+        if (orientation == Direction.EAST && !eastIsSet)
         {
             rightOffset = 0f;
             leftOffset = 1f;
@@ -47,7 +51,7 @@ public class AnimationTool
             eastIsSet = true;
             westIsSet = false;
         }
-        else if (faceDirection == Direction.WEST && !westIsSet)
+        else if (orientation == Direction.WEST && !westIsSet)
         {
             rightOffset = numOfSprites - 1;
             leftOffset = numOfSprites;
@@ -57,16 +61,17 @@ public class AnimationTool
         }
     }
 
-    public void doAnimation(Direction dir)
+    public void doAnimation(Direction orientation)
     {
-        setAnimationOffset(dir);
+        currentOrientation = orientation;
+        setAnimationOffset(orientation);
 
         animationTimer = new Timer(TIMER_INTERVAL, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (faceDirection == Direction.WEST)
+                if (currentOrientation == Direction.WEST)
                 {
                     if (leftOffset < (numOfSprites / 2))
                     {
@@ -79,7 +84,7 @@ public class AnimationTool
                         leftOffset = 1;
                     }
                 }
-                else if (faceDirection == Direction.EAST)
+                else if (currentOrientation == Direction.EAST)
                 {
                     if (rightOffset > (numOfSprites / 2))
                     {
@@ -96,22 +101,17 @@ public class AnimationTool
         });
 
         // Start the timer for the first time.
-        if (dir == null)
+        if (orientation == null)
         {
             animationTimer.stop();
         }
         if (!clockHasStarted)
         {
-            animationTimer.start();
             clockHasStarted = true;
+            animationTimer.start();
         }
     }
 
-    public void stopAnimation()
-    {
-        animationTimer.stop();
-        clockHasStarted = false;
-    }
     public float getLeftOffset()  { return leftOffset;  }
     public float getRightOffset() { return rightOffset; }
 }

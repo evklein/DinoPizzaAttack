@@ -1,6 +1,7 @@
 package com.hasherr.dinopizzaattack.entity;
 
 import com.hasherr.dinopizzaattack.core.Game;
+import com.hasherr.dinopizzaattack.graphics.Sprite;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
 import org.newdawn.slick.opengl.Texture;
@@ -29,10 +30,11 @@ public class Laser extends Entity
     // Laser constructor.
     public Laser(Player player, Vector2 mouse)
     {
-        pos = new Vector2(player.pos.x + 20.0, player.pos.y + 20.0); // Set initial laser position.
-        normalizedDir = new Vector2(mouse.x - (player.pos.x), mouse.y - (player.pos.y)).getNormalizedVector();
-
+        super(new Vector2(player.pos.x + 20.0, player.pos.y + 20.0),
+                new Sprite(1, TextureHandler.getTexture("fireball", "Png")));
         Laser.allLasers.add(this);  // Add this laser to a list of updated and rendered lasers.
+
+        normalizedDir = new Vector2(mouse.x - (player.pos.x), mouse.y - (player.pos.y)).getNormalizedVector();
     }
 
     @Override
@@ -41,25 +43,25 @@ public class Laser extends Entity
         return laserSprite;
     }
 
-    // Draw the laser onto the screen.
-    @Override
-    public void draw()
-    {
-        laserSprite.bind();
-        glBegin(GL_QUADS);
-            glTexCoord2f(0.0f, 1.0f);
-            glVertex2d(pos.x, pos.y);
-
-            glTexCoord2f(1.0f, 1.0f);
-            glVertex2d(pos.x + laserSprite.getImageWidth(), pos.y);
-
-            glTexCoord2f(1.0f, 0.0f);
-            glVertex2d(pos.x + laserSprite.getImageWidth(), pos.y + laserSprite.getImageHeight());
-
-            glTexCoord2f(0.0f, 0.0f);
-            glVertex2d(pos.x, pos.y + laserSprite.getImageHeight());
-        glEnd();
-    }
+//    // Draw the laser onto the screen.
+//    @Override
+//    public void draw()
+//    {
+//        laserSprite.bind();
+//        glBegin(GL_QUADS);
+//            glTexCoord2f(0.0f, 1.0f);
+//            glVertex2d(pos.x, pos.y);
+//
+//            glTexCoord2f(1.0f, 1.0f);
+//            glVertex2d(pos.x + laserSprite.getImageWidth(), pos.y);
+//
+//            glTexCoord2f(1.0f, 0.0f);
+//            glVertex2d(pos.x + laserSprite.getImageWidth(), pos.y + laserSprite.getImageHeight());
+//
+//            glTexCoord2f(0.0f, 0.0f);
+//            glVertex2d(pos.x, pos.y + laserSprite.getImageHeight());
+//        glEnd();
+//    }
 
     // Update the laser's position.
     @Override

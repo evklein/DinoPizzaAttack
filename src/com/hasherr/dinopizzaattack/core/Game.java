@@ -44,7 +44,7 @@ public class Game
         // Initial GL elements.
         glMatrixMode(GL_PROJECTION);                        // *
         glLoadIdentity();                                   // *
-        glOrtho(0, width, 0, height, 1, -1);                // *
+        glOrtho(0, width, 0, height, -1, 1);                // *
         glMatrixMode(GL_MODELVIEW);                         // *
         glEnable(GL_TEXTURE_2D);                            // *
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // *

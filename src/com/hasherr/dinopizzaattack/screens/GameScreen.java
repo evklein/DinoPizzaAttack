@@ -42,9 +42,10 @@ public class GameScreen extends Screen
         aiRandom = new Random();
         aiGenerator = new AIGenerator();
         aiIsRunning = false;
-        background = TextureHandler.getTexture("back", "Png");
+        background = TextureHandler.getTexture("background", "png");
 
-        // Create a timer which sets off randomly between 20 ms and 370 ms and sets off an enemy.
+
+        // Create a timer which sets off randomly between 20 ms and 350 ms and sets off an enemy.
         final int MIN_TIME = 20;
         final int MAX_TIME = 350;
 //        aiTimer = new Timer(aiRandom.nextInt(MAX_TIME) + MIN_TIME, new ActionListener()
@@ -60,24 +61,6 @@ public class GameScreen extends Screen
     @Override
     public void render()
     {
-        // Draw the background.
-        background.bind();
-        glBegin(GL_QUADS);
-        {
-            glTexCoord2d(0.0, 1.0);
-            glVertex2d(0, 0);
-
-            glTexCoord2d(1.0, 1.0);
-            glVertex2d(background.getImageWidth(), 0);
-
-            glTexCoord2d(1.0, 0.0);
-            glVertex2d(background.getImageWidth(), background.getImageHeight());
-
-            glTexCoord2d(0.0, 0.0);
-            glVertex2d(0, background.getImageHeight());
-        }
-        glEnd();
-
         for (Laser laser : Laser.allLasers)
         {
             laser.draw();
@@ -126,12 +109,12 @@ public class GameScreen extends Screen
         Laser.deadLasers.clear();
 
 
-            for (Raptor raptor : Raptor.allRaptors)
+        for (Raptor raptor : Raptor.allRaptors)
         {
             raptor.update();
 
             // GC the raptors if they go out of bounds.
-            if (raptor.pos.x > Game.WIDTH + 1000 || raptor.pos.y < -2000)
+            if (raptor.pos.x > Game.WIDTH + 2000 || raptor.pos.y < -2000)
             {
                 Raptor.deadRaptors.add(raptor);
             }
