@@ -1,5 +1,6 @@
 package com.hasherr.dinopizzaattack.entity.ai;
 
+import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.Entity;
 import com.hasherr.dinopizzaattack.entity.Player;
@@ -28,35 +29,12 @@ public class Raptor extends Entity
 
     public Raptor(Vector2 startingPos, Player player)
     {
-        super(startingPos, new Sprite(1, TextureHandler.getTexture("raptor", "Png")));
+        super(startingPos, new Sprite(8f, TextureHandler.getTexture("raptor_spritesheet", "Png")), Direction.EAST);
         Raptor.allRaptors.add(this);
 
         this.player = player;
         direction = new Vector2(player.pos.x - (startingPos.x), player.pos.y - (startingPos.y)).getNormalizedVector();
     }
-
-//    // Draws the raptor.
-//    @Override
-//    public void draw()
-//    {
-//
-////        raptorSprite.bind();
-////        glBegin(GL_QUADS);
-////        {
-////            glTexCoord2d(0.0, 1.0);
-////            glVertex2d(pos.x, pos.y);
-////
-////            glTexCoord2d(1.0, 1.0);
-////            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y);
-////
-////            glTexCoord2d(1.0, 0.0);
-////            glVertex2d(pos.x + raptorSprite.getImageWidth(), pos.y + raptorSprite.getImageHeight());
-////
-////            glTexCoord2d(0.0, 0.0);
-////            glVertex2d(pos.x, pos.y + raptorSprite.getImageHeight());
-////        }
-////        glEnd();
-//    }
 
     // Updates the raptor.
     @Override

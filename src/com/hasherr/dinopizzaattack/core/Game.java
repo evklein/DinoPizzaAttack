@@ -16,6 +16,7 @@ public class Game
 {
     ScreenManager screenManager;
 
+    // Timing variables.
     private static double time, lastTime, frames, lastDelta, delta;
 
     public static final int WIDTH = 850;
@@ -23,11 +24,11 @@ public class Game
 
     public static void main(String[] args) // Main method for running.
     {
-        new Game().play(WIDTH, HEIGHT); // Start the game.
+        new Game().start(WIDTH, HEIGHT); // Start the game.
     }
 
-    // Main game loop, runs the game at 60 frames per second.
-    private void play(int width, int height) // Displaying screen using OpenGL.
+    // Main game method, runs the game at 60 frames per second.
+    private void start(int width, int height) // Displaying screen using OpenGL.
     {
         try
         {
@@ -41,21 +42,21 @@ public class Game
         }
         lastDelta = getTime();
 
-        // Initial GL elements.
-        glMatrixMode(GL_PROJECTION);                        // *
-        glLoadIdentity();                                   // *
-        glOrtho(0, width, 0, height, -1, 1);                // *
-        glMatrixMode(GL_MODELVIEW);                         // *
-        glEnable(GL_TEXTURE_2D);                            // *
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // *
-        glEnable(GL_BLEND);                                 // *
+        // Initial OpenGL setup.
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0, width, 0, height, -1, 1);
+        glMatrixMode(GL_MODELVIEW);
+        glEnable(GL_TEXTURE_2D);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
 
         screenManager = new ScreenManager();
 
         // Infinite game logic loop.
         while (!Display.isCloseRequested())
         {
-            // Operations to do with timing.
+            // Calculate timing information.
             displayFps();
             time = getTime();
             delta = time - lastDelta;

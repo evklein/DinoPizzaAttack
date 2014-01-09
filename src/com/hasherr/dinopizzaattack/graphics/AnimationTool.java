@@ -31,14 +31,14 @@ public class AnimationTool
     {
         this.numOfSprites = numOfSprites;
 
+        clockHasStarted = false;
         rightOffset = 0f;
         leftOffset = 1f;
-
         eastIsSet = false;
         westIsSet = false;
-        clockHasStarted = false;
     }
 
+    // Offset the animation image so that sprites using a spritesheet and separate their image.
     private void setAnimationOffset(Direction orientation)
     {
         this.orientation = orientation;
@@ -64,7 +64,7 @@ public class AnimationTool
     public void doAnimation(Direction orientation)
     {
         currentOrientation = orientation;
-        setAnimationOffset(orientation);
+        setAnimationOffset(currentOrientation);
 
         animationTimer = new Timer(TIMER_INTERVAL, new ActionListener()
         {

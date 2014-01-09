@@ -1,4 +1,4 @@
-package com.hasherr.dinopizzaattack.graphics;
+package com.hasherr.dinopizzaattack.entity;
 
 import com.hasherr.dinopizzaattack.math.Vector2;
 

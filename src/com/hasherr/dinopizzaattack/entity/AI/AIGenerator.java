@@ -1,6 +1,5 @@
 package com.hasherr.dinopizzaattack.entity.ai;
 
-import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.Player;
 import com.hasherr.dinopizzaattack.math.Vector2;
@@ -15,7 +14,6 @@ import java.util.Random;
 public class AIGenerator
 {
     Random generator;
-    Direction side;
 
     public AIGenerator()
     {

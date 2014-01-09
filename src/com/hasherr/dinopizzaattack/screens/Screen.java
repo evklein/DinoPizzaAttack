@@ -7,9 +7,7 @@ package com.hasherr.dinopizzaattack.screens;
  */
 public abstract class Screen
 {
-
     public abstract void update();
     public abstract void render();
-
 }
 

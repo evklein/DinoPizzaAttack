@@ -57,7 +57,8 @@ public class Sprite
         glEnd();
     }
 
-    public int getWidth()  { return sprite.getImageWidth(); }
+    public int getWidth() { return sprite.getImageWidth(); }
     public int getHeight() { return sprite.getImageHeight(); }
+    public float getNumOfSprites() { return numOfSprites; }
     public Texture getTexture() { return sprite; }
 }
