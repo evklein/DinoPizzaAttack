@@ -19,8 +19,8 @@ public class Game
     // Timing variables.
     private static double time, lastTime, frames, lastDelta, delta;
 
-    public static final int WIDTH = 850;
-    public static final int HEIGHT = 650;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
 
     public static void main(String[] args) // Main method for running.
     {

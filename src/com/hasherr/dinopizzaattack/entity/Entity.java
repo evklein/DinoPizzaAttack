@@ -10,32 +10,37 @@ import org.newdawn.slick.opengl.Texture;
  * User: Evan
  * Date: 10/31/13
  */
-public abstract class Entity implements Movable
+public abstract class Entity
 {
-    // Every entity has a position vector.
     public Vector2 pos;
     Direction orientation;
 
     Rectangle boundingBox;
     Sprite sprite;
 
-    public Entity(Vector2 pos, Sprite sprite, Direction initOrientation)
+    public Entity(Vector2 pos, Sprite sprite, Direction initDirection)
     {
         this.pos = pos;
         this.sprite = sprite;
-        this.orientation = initOrientation;
+        this.orientation = initDirection;
 
         boundingBox = new Rectangle(pos, sprite.getWidth(), sprite.getHeight());
     }
+
+    public void setOrientation(Direction orientation) { this.orientation = orientation; }
+    public Direction getOrientation() { return orientation; }
 
     // Method which returns the entities sprite texture for drawing purposes.
     public Texture getSprite() { return sprite.getTexture(); }
 
     // Update the entities existing bounding box location and dimensions.
-    public void updateBoundingBox() { boundingBox.update(pos, sprite.getWidth(), sprite.getHeight()); }
+    protected void updateBoundingBox() { boundingBox.update(pos, sprite.getWidth(), sprite.getHeight()); }
 
     // Draws the entity to the screen on an OpenGL quad.
-    public void draw(float numOfSprites) { sprite.draw(pos, velocity, orientation); }
+    public void draw(float numOfSprites, float leftOffset, float rightOffset)
+    {
+        sprite.draw(pos, leftOffset, rightOffset);
+    }
 
     // Updates the entity's position and variables at a constant rate.
     public abstract void update();

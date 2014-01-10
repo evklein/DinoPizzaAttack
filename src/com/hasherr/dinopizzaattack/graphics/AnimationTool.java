@@ -2,7 +2,7 @@ package com.hasherr.dinopizzaattack.graphics;
 
 import com.hasherr.dinopizzaattack.core.Direction;
 
-import javax.swing.Timer;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,7 +16,7 @@ public class AnimationTool
     Direction orientation;
     Direction currentOrientation;
 
-    static final int TIMER_INTERVAL = 100; // 100 milliseconds, 1/10 of a second.
+    final int TIMER_DELAY = 100;
     float numOfSprites;
     float leftOffset;
     float rightOffset;
@@ -66,7 +66,7 @@ public class AnimationTool
         currentOrientation = orientation;
         setAnimationOffset(currentOrientation);
 
-        animationTimer = new Timer(TIMER_INTERVAL, new ActionListener()
+        animationTimer = new Timer(TIMER_DELAY, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -105,6 +105,31 @@ public class AnimationTool
         {
             animationTimer.stop();
         }
+        if (!clockHasStarted)
+        {
+            clockHasStarted = true;
+            animationTimer.start();
+        }
+    }
+
+    // An alternate method of animating which doesn't require an orientation.
+    public void doAnimation()
+    {
+        animationTimer = new Timer(TIMER_DELAY, new ActionListener()
+        {
+            int counter = 0;
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("Count: " + counter);
+                counter++;
+                if (counter == 8) counter = 0;
+
+                rightOffset = counter;
+                leftOffset = counter + 1;
+            }
+        });
+
         if (!clockHasStarted)
         {
             clockHasStarted = true;

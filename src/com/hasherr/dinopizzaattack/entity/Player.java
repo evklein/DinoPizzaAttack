@@ -4,6 +4,7 @@ import com.hasherr.dinopizzaattack.core.Direction;
 import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.projectile.Laser;
 import com.hasherr.dinopizzaattack.entity.projectile.Shoot;
+import com.hasherr.dinopizzaattack.graphics.AnimationTool;
 import com.hasherr.dinopizzaattack.graphics.Sprite;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
 import com.hasherr.dinopizzaattack.math.Vector2;
@@ -16,8 +17,10 @@ import org.newdawn.slick.opengl.Texture;
  * User: Evan
  * Date: 11/2/13
  */
-public class Player extends Entity implements Shoot
+public class Player extends Entity implements Shoot, Movable
 {
+    AnimationTool animationTool;
+
     // In-game attributes.
     boolean isAlive;
     int health;
@@ -28,7 +31,7 @@ public class Player extends Entity implements Shoot
     {
         super(new Vector2(x, y), new Sprite(8f, TextureHandler.getTexture("dino_spritesheet", "png")),
                 Direction.EAST);
-
+        animationTool = new AnimationTool(8f);
         isAlive = true;
         health = 100;
         score = 0;
@@ -38,6 +41,7 @@ public class Player extends Entity implements Shoot
     @Override
     public void update()
     {
+        animate();
         updateBoundingBox();
 
         // Create friction for the player, allow for acceleration/deceleration.
@@ -56,7 +60,7 @@ public class Player extends Entity implements Shoot
      */
 
     // Sets the player's face direction for animation purposes.
-    private void setFaceDirection(Direction dir)
+    private void setFaceDirection(Direction dir) throws IllegalArgumentException
     {
         if (dir == Direction.NORTH || dir == Direction.SOUTH)
         {
@@ -71,7 +75,7 @@ public class Player extends Entity implements Shoot
     // Gets player input and uses it to move the player.
     public void move(Direction dir)
     {
-        double moveSpeed = 60 * Game.getDeltaTime();
+        double moveSpeed = 75 * Game.getDeltaTime();
 
         if (dir == Direction.NORTH)
         {
@@ -125,4 +129,23 @@ public class Player extends Entity implements Shoot
     {
         Laser projectile = new Laser(this, direction);
     }
+
+    @Override
+    public void animate()
+    {
+        // Stop animating if the player stops moving.
+        final double STOP_SPEED = 1.0;
+        if (velocity.x <= STOP_SPEED && velocity.y <= STOP_SPEED &&
+                velocity.x >= -STOP_SPEED && velocity.y >= -STOP_SPEED)
+        {
+            animationTool.doAnimation(null);
+        }
+        else
+        {
+            animationTool.doAnimation(orientation);
+        }
+    }
+
+    @Override public float getLeftOffset() { return animationTool.getLeftOffset(); }
+    @Override public float getRightOffset() { return animationTool.getRightOffset(); }
 }

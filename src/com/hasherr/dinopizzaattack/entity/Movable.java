@@ -11,4 +11,11 @@ public interface Movable
 {
     // Implements velocity for movable entities.
     Vector2 velocity = new Vector2(1.0);
+
+    // Animates the player.
+    public abstract void animate();
+
+    // Getters for animation purposes.
+    public abstract float getLeftOffset();
+    public abstract float getRightOffset();
 }
