@@ -33,7 +33,9 @@ public class Raptor extends Entity implements Movable
     Player player;
     Vector2 direction;
     AnimationTool animationTool;
+    Timer deploymentTimer;
     boolean timerHasStarted;
+    boolean isAlive;
 
     public Raptor(Vector2 startingPos, Player player)
     {
@@ -46,12 +48,13 @@ public class Raptor extends Entity implements Movable
         pos = startingPos;
         direction = new Vector2(player.pos.x - (pos.x), player.pos.y - (pos.y)).getNormalizedVector();
         timerHasStarted = false;
+        isAlive = true;
     }
 
     // Recalculate the path every 1.2 seconds so that the AI seems 'smarter.'
     private void recalculatePath()
     {
-        Timer deploymentTimer = new Timer(1200, new ActionListener()
+        deploymentTimer = new Timer(1200, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -80,13 +83,24 @@ public class Raptor extends Entity implements Movable
     {
         recalculatePath();
         animate();
-        System.out.println("Left: " + getLeftOffset() + " Right: " + getRightOffset());
 
         final int MAX_SPEED = 7;
         pos.x += direction.x * (Game.getDeltaTime() * 100) * MAX_SPEED;
         pos.y += direction.y * (Game.getDeltaTime() * 100) * MAX_SPEED;
+
+        updateBoundingBox();
+
+        if (getBoundingBox().collidesWith(player.getBoundingBox()))
+        {
+            player.takeDamage();
+
+            deploymentTimer.stop();
+            direction = new Vector2((pos.x) - player.pos.x, (pos.y) - player.pos.y).getNormalizedVector();
+        }
     }
 
     @Override public float getLeftOffset() { return animationTool.getLeftOffset(); }
     @Override public float getRightOffset() { return animationTool.getRightOffset(); }
+    public boolean getIsAlive() { return isAlive; }
+    public void setIsAlive(boolean isAlive) { this.isAlive = isAlive; }
 }

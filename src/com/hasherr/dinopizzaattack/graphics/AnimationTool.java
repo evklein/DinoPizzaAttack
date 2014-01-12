@@ -121,7 +121,6 @@ public class AnimationTool
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                System.out.println("Count: " + counter);
                 counter++;
                 if (counter == 8) counter = 0;
 

@@ -42,7 +42,6 @@ public class Player extends Entity implements Shoot, Movable
     public void update()
     {
         animate();
-        updateBoundingBox();
 
         // Create friction for the player, allow for acceleration/deceleration.
         velocity.x *= 0.84f;
@@ -52,7 +51,8 @@ public class Player extends Entity implements Shoot, Movable
         pos.x += velocity.x;
         pos.y += velocity.y;
 
-        handleCollision();
+        updateBoundingBox();
+        handleCollisionOnWall();
     }
 
     /*
@@ -98,7 +98,7 @@ public class Player extends Entity implements Shoot, Movable
     }
 
     // Handle player collision with outside boundaries.
-    public void handleCollision()
+    public void handleCollisionOnWall()
     {
         float numOfSprites = 8f;
         if (pos.x <= 0) // Detect and handle collision on the far left side.
@@ -128,6 +128,19 @@ public class Player extends Entity implements Shoot, Movable
     public void shoot(Vector2 direction)
     {
         Laser projectile = new Laser(this, direction);
+    }
+
+    public void takeDamage()
+    {
+        if (health > 0)
+        {
+            health -= 1;
+            System.out.println("Health: " + health);
+        }
+        else
+        {
+            System.exit(0);
+        }
     }
 
     @Override

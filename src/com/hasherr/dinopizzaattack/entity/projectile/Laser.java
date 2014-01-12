@@ -5,6 +5,7 @@ import com.hasherr.dinopizzaattack.core.Game;
 import com.hasherr.dinopizzaattack.entity.Entity;
 import com.hasherr.dinopizzaattack.entity.Movable;
 import com.hasherr.dinopizzaattack.entity.Player;
+import com.hasherr.dinopizzaattack.entity.ai.Raptor;
 import com.hasherr.dinopizzaattack.graphics.AnimationTool;
 import com.hasherr.dinopizzaattack.graphics.Sprite;
 import com.hasherr.dinopizzaattack.graphics.TextureHandler;
@@ -48,9 +49,18 @@ public class Laser extends Entity implements Movable
     @Override
     public void update()
     {
+        for (Raptor raptor : Raptor.allRaptors)
+        {
+            if (getBoundingBox().collidesWith(raptor.getBoundingBox()))
+            {
+                raptor.setIsAlive(false);
+                System.out.println("PEW PEW");
+            }
+        }
         animate();
         pos.x += direction.x * (Game.getDeltaTime() * 1000);
         pos.y += direction.y * (Game.getDeltaTime() * 1000);
+        updateBoundingBox();
     }
 
     @Override public float getLeftOffset() { return animationTool.getLeftOffset(); }

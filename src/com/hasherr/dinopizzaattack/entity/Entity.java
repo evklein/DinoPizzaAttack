@@ -27,8 +27,13 @@ public abstract class Entity
         boundingBox = new Rectangle(pos, sprite.getWidth(), sprite.getHeight());
     }
 
+    // Get and set the orientation of the sprite (if there is an orientation).
     public void setOrientation(Direction orientation) { this.orientation = orientation; }
     public Direction getOrientation() { return orientation; }
+
+    // Get and set the bounding box of the entity.
+    public void setBoundingBox(Rectangle boundingBox) { this.boundingBox = boundingBox; }
+    public Rectangle getBoundingBox() { return this.boundingBox; }
 
     // Method which returns the entities sprite texture for drawing purposes.
     public Texture getSprite() { return sprite.getTexture(); }

@@ -145,11 +145,14 @@ public class GameScreen extends Screen
 
         for (Raptor raptor : Raptor.allRaptors)
         {
-            raptor.update();
-
-            // GC the raptors if they go out of bounds.
-            if (raptor.pos.x > Game.WIDTH + 2000 || raptor.pos.y < -2000)
+            if (raptor.getIsAlive())
             {
+                raptor.update();
+            }
+            // GC the raptors if they go out of bounds.
+            if (raptor.pos.x > Game.WIDTH + 2000 || raptor.pos.y < -2000 || !raptor.getIsAlive())
+            {
+                raptor.setIsAlive(false);
                 Raptor.deadRaptors.add(raptor);
             }
         }
